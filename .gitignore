@@ -1,0 +1,23 @@
+# Android / Gradle ignore
+app/.gradle/
+app/build/
+app/.idea/
+app/local.properties
+*.iml
+
+# Python / Backend ignore
+backend/__pycache__/
+backend/*/__pycache__/
+backend/**/*.pyc
+*.pyc
+backend/*.db
+backend/.venv/
+
+# Environment variables
+.env
+
+# System / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

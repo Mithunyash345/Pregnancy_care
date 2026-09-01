@@ -1,0 +1,2076 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Bloom - Premium Pregnancy Care Companion</title>
+    <!-- Tailwind CSS with plugins -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Premium Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet"/>
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <!-- Tailwind Configuration matching DESIGN.md -->
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "deep-charcoal": "#0C0E10",
+                        "background-dark": "#131411",
+                        "maternity-mint": "#7AE2B8",
+                        "soft-blush": "#F8C8DC",
+                        "lavender-bloom": "#E9D8FD",
+                        "serene-blue": "#90CDF4",
+                        "serene-white": "#F0EDE8",
+                        "warning-amber": "#EF9F27",
+                        "critical-rose": "#E24B4A",
+                        "muted-sage": "#9E9B96",
+                        "glass-surface": "rgba(22, 25, 28, 0.45)",
+                        "glass-border": "rgba(240, 237, 232, 0.1)"
+                    },
+                    fontFamily: {
+                        sans: ["Hanken Grotesk", "sans-serif"],
+                        serif: ["Playfair Display", "serif"]
+                    },
+                    borderRadius: {
+                        'xs': '4px',
+                        'sm': '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '24px',
+                        '2xl': '32px',
+                        'full': '9999px'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS for Glows, Glassmorphism, and Animations -->
+    <style>
+        body {
+            background-color: #0C0E10;
+            color: #F0EDE8;
+            font-family: 'Hanken Grotesk', sans-serif;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(122, 226, 184, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(248, 200, 220, 0.05) 0%, transparent 40%);
+        }
+
+        /* Frosted Glass Effect */
+        .glass-card {
+            background: rgba(22, 25, 28, 0.55);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 0.5px solid rgba(240, 237, 232, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(240, 237, 232, 0.15);
+            background: rgba(22, 25, 28, 0.65);
+        }
+
+        /* Pulsing Glows */
+        .maternity-glow-mint {
+            box-shadow: 0 0 40px -5px rgba(122, 226, 184, 0.12);
+        }
+        .maternity-glow-blush {
+            box-shadow: 0 0 40px -5px rgba(248, 200, 220, 0.12);
+        }
+        .maternity-glow-critical {
+            box-shadow: 0 0 30px -2px rgba(226, 75, 74, 0.25);
+            animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 30px -2px rgba(226, 75, 74, 0.25); }
+            50% { box-shadow: 0 0 40px 4px rgba(226, 75, 74, 0.45); }
+        }
+
+        /* Gradient Progress Bars */
+        .progress-gradient-mint-blush {
+            background: linear-gradient(90deg, #F8C8DC 0%, #E9D8FD 50%, #7AE2B8 100%);
+        }
+
+        .progress-gradient-blue {
+            background: linear-gradient(90deg, #63B3ED 0%, #90CDF4 100%);
+        }
+
+        /* Hide scrollbar but keep functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Wave animation for Voice Input */
+        .wave-bar {
+            animation: wave 1.2s ease-in-out infinite;
+        }
+        .wave-bar:nth-child(2) { animation-delay: 0.2s; }
+        .wave-bar:nth-child(3) { animation-delay: 0.4s; }
+        .wave-bar:nth-child(4) { animation-delay: 0.6s; }
+        .wave-bar:nth-child(5) { animation-delay: 0.8s; }
+
+        @keyframes wave {
+            0%, 100% { height: 8px; }
+            50% { height: 32px; }
+        }
+
+        /* Custom toggle switch style */
+        .toggle-dot {
+            transition: transform 0.3s ease;
+        }
+        input:checked ~ .toggle-dot {
+            transform: translateX(100%);
+        }
+
+        /* Phone frame style */
+        .iphone-frame {
+            border: 12px solid #2d2d30;
+            border-radius: 48px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Interactive pulse for map */
+        .gps-pulse {
+            animation: pulse-gps 2s infinite;
+        }
+        @keyframes pulse-gps {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(3.5); opacity: 0; }
+        }
+
+        /* Custom notifications animation */
+        .toast-slide {
+            animation: slide-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slide-in {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Scan laser line animation */
+        .scan-laser {
+            animation: scan-move 2.5s ease-in-out infinite;
+        }
+        @keyframes scan-move {
+            0%, 100% { top: 0%; }
+            50% { top: 100%; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-start lg:p-6 overflow-x-hidden select-none">
+
+    <!-- Global Floating Toast Notification -->
+    <div id="global-toast" class="fixed top-6 z-[9999] w-[90%] max-w-sm glass-card rounded-xl p-4 flex items-start gap-3 shadow-2xl transition-all duration-300 transform scale-0 translate-y-[-20px] pointer-events-none">
+        <div id="toast-icon-bg" class="p-2 rounded-lg flex items-center justify-center">
+            <span id="toast-icon" class="material-symbols-outlined text-xl"></span>
+        </div>
+        <div class="flex-1">
+            <h4 id="toast-title" class="font-bold text-sm text-serene-white">Notification</h4>
+            <p id="toast-message" class="text-xs text-muted-sage mt-0.5">Alert message content here.</p>
+        </div>
+        <button onclick="hideToast()" class="text-muted-sage hover:text-serene-white">
+            <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+    </div>
+
+    <!-- Main Container -->
+    <div class="w-full max-w-7xl flex flex-col lg:flex-row gap-6 justify-center items-stretch min-h-[90vh]">
+        
+        <!-- ================= LEFT PANEL: DESKTOP CONTROL PANEL & DESIGN SYSTEM SPECS ================= -->
+        <aside class="hidden lg:flex flex-col w-[350px] gap-6 shrink-0 text-left">
+            <!-- Project Header & Controller -->
+            <div class="glass-card rounded-2xl p-5 border-white/5 space-y-4">
+                <div class="space-y-1">
+                    <div class="flex items-center gap-2">
+                        <span class="p-1.5 bg-maternity-mint/10 text-maternity-mint rounded-lg">
+                            <span class="material-symbols-outlined text-lg">baby_changing_station</span>
+                        </span>
+                        <h1 class="text-xl font-bold tracking-tight text-serene-white">Bloom Prototype</h1>
+                    </div>
+                    <p class="text-xs text-muted-sage">"AI Assists, Doctors Decide"</p>
+                </div>
+                
+                <hr class="border-white/5"/>
+                
+                <!-- Role Switcher -->
+                <div class="space-y-2">
+                    <label class="font-bold text-xs text-muted-sage uppercase tracking-wider">Active Prototype Role</label>
+                    <div class="grid grid-cols-3 gap-1.5 bg-deep-charcoal p-1 rounded-xl border border-white/5">
+                        <button onclick="switchRole('mother')" id="role-btn-mother" class="py-2 text-[11px] font-bold rounded-lg transition-all text-deep-charcoal bg-maternity-mint">
+                            Mother
+                        </button>
+                        <button onclick="switchRole('companion')" id="role-btn-companion" class="py-2 text-[11px] font-bold rounded-lg transition-all text-muted-sage hover:text-serene-white">
+                            Companion
+                        </button>
+                        <button onclick="switchRole('doctor')" id="role-btn-doctor" class="py-2 text-[11px] font-bold rounded-lg transition-all text-muted-sage hover:text-serene-white">
+                            Doctor
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Event Trigger Panel -->
+                <div class="space-y-2">
+                    <label class="font-bold text-xs text-muted-sage uppercase tracking-wider">Simulate Live Events</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="triggerNotification('water')" class="text-[11px] text-left p-2.5 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 text-serene-white transition flex items-center gap-1.5">
+                            <span class="material-symbols-outlined text-sm text-serene-blue">water_drop</span>
+                            <span>Water Reminder</span>
+                        </button>
+                        <button onclick="triggerNotification('med')" class="text-[11px] text-left p-2.5 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 text-serene-white transition flex items-center gap-1.5">
+                            <span class="material-symbols-outlined text-sm text-soft-blush">pill</span>
+                            <span>Meds Reminder</span>
+                        </button>
+                        <button onclick="triggerNotification('prescription')" class="text-[11px] text-left p-2.5 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 text-serene-white transition flex items-center gap-1.5 col-span-2">
+                            <span class="material-symbols-outlined text-sm text-maternity-mint">prescriptions</span>
+                            <span>Simulate Doctor Prescribing Meds</span>
+                        </button>
+                        <button onclick="triggerNotification('alert')" class="text-[11px] text-left p-2.5 rounded-xl bg-red-950/20 border border-red-500/30 hover:bg-red-950/30 text-critical-rose transition flex items-center gap-1.5 col-span-2">
+                            <span class="material-symbols-outlined text-sm">emergency_home</span>
+                            <span>Simulate Mother SOS (Companion Alert)</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Design Guidelines & Brand Token Spec -->
+            <div class="glass-card rounded-2xl p-5 border-white/5 flex-1 space-y-4 text-xs">
+                <h3 class="font-bold text-sm text-serene-white flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-lg text-lavender-bloom">palette</span>
+                    <span>Design Spec & Tokens</span>
+                </h3>
+                <div class="space-y-3">
+                    <!-- Palette Info -->
+                    <div class="space-y-1.5">
+                        <span class="text-muted-sage font-bold uppercase tracking-wider text-[10px]">Brand Palette</span>
+                        <div class="flex gap-1">
+                            <div class="w-7 h-7 rounded-md bg-maternity-mint" title="Maternity Mint (#7AE2B8) - Vitality / Actions"></div>
+                            <div class="w-7 h-7 rounded-md bg-soft-blush" title="Soft Blush (#F8C8DC) - Milestones / Fetal"></div>
+                            <div class="w-7 h-7 rounded-md bg-lavender-bloom" title="Lavender Bloom (#E9D8FD) - Companions"></div>
+                            <div class="w-7 h-7 rounded-md bg-serene-blue" title="Serene Blue (#90CDF4) - Wellness / Medical"></div>
+                            <div class="w-7 h-7 rounded-md bg-deep-charcoal border border-white/10" title="Deep Charcoal (#0C0E10) - Base background"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Typography Spec -->
+                    <div class="space-y-1.5">
+                        <span class="text-muted-sage font-bold uppercase tracking-wider text-[10px]">Typography (Hanken Grotesk)</span>
+                        <div class="bg-deep-charcoal p-2.5 rounded-lg border border-white/5 space-y-1 font-mono text-[10px]">
+                            <p class="text-serene-white font-bold">Display: 34px/52px (Medium)</p>
+                            <p class="text-serene-white font-medium">Headlines: 20px/32px (Medium)</p>
+                            <p class="text-muted-sage">Body: 13px/15px (Regular)</p>
+                        </div>
+                    </div>
+
+                    <!-- App Features list -->
+                    <div class="space-y-1.5">
+                        <span class="text-muted-sage font-bold uppercase tracking-wider text-[10px]">Interactive Flow Checklist</span>
+                        <div class="max-h-[140px] overflow-y-auto no-scrollbar space-y-1 text-muted-sage">
+                            <div class="flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-[14px] text-maternity-mint">check_circle</span>
+                                <span>Complete 5-tab Mother Nav</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-[14px] text-maternity-mint">check_circle</span>
+                                <span>Incrementing Water intake widget</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-[14px] text-maternity-mint">check_circle</span>
+                                <span>Mock OCR report scan animation</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-[14px] text-maternity-mint">check_circle</span>
+                                <span>Interactive Doctor Video Consultation</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-[14px] text-maternity-mint">check_circle</span>
+                                <span>Realtime cross-role alerts & data</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-[14px] text-maternity-mint">check_circle</span>
+                                <span>Light/Dark frame mode preview</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Console Activity Log -->
+                    <div class="space-y-1.5">
+                        <span class="text-muted-sage font-bold uppercase tracking-wider text-[10px] flex justify-between">
+                            <span>Prototype Activity Log</span>
+                            <button onclick="clearConsoleLog()" class="hover:text-serene-white">Clear</button>
+                        </span>
+                        <div id="console-log-box" class="bg-deep-charcoal/80 border border-white/5 rounded-lg p-2.5 h-[120px] overflow-y-auto font-mono text-[9px] text-maternity-mint/80 space-y-1 leading-normal">
+                            <div>[SYSTEM] Prototype loaded in Mother mode.</div>
+                            <div>[DATABASE] Hydration synced: 1.2 Liters today.</div>
+                            <div>[AI CHAT] Chat engine initialized.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ================= CENTER PANEL: PHONE FRAME WORKSPACE ================= -->
+        <main class="flex-1 flex justify-center items-center">
+            
+            <!-- Mobile Container Frame representing iPhone 15 Pro -->
+            <div id="phone-shell" class="iphone-frame bg-background-dark w-[412px] h-[860px] flex flex-col relative overflow-hidden transition-all duration-300">
+                
+                <!-- Status Bar -->
+                <div class="h-10 bg-background-dark/95 flex justify-between items-center px-6 text-xs text-serene-white z-[90] shrink-0 font-medium select-none">
+                    <span id="statusBarTime">09:41</span>
+                    <!-- Dynamic Island in center -->
+                    <div class="absolute left-1/2 -translate-x-1/2 top-2.5 w-[110px] h-[22px] bg-black rounded-full flex items-center justify-center border border-white/10 z-[100] transition-all duration-300 hover:w-[130px] hover:h-[28px] overflow-hidden" id="dynamic-island">
+                        <div class="flex items-center justify-center gap-1 text-[9px] text-maternity-mint scale-0 opacity-0 transition-all duration-300" id="island-active-indicator">
+                            <span class="material-symbols-outlined text-[10px] animate-pulse">emergency</span>
+                            <span>SOS ACTIVE</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-sm">signal_cellular_4_bar</span>
+                        <span class="material-symbols-outlined text-sm">wifi</span>
+                        <span class="material-symbols-outlined text-sm rotate-90">battery_5_bar</span>
+                    </div>
+                </div>
+
+                <!-- Live Top Banner for Custom Notification Alerts (Inside Phone) -->
+                <div id="phone-notification-banner" class="absolute top-[44px] left-[5%] right-[5%] z-[95] glass-card p-3 rounded-xl border border-white/10 shadow-2xl transition-all duration-300 transform scale-0 -translate-y-4 flex items-start gap-2.5">
+                    <div id="phone-notif-icon-bg" class="w-8 h-8 rounded-lg flex items-center justify-center bg-maternity-mint/10 text-maternity-mint">
+                        <span id="phone-notif-icon" class="material-symbols-outlined text-lg">notifications</span>
+                    </div>
+                    <div class="flex-1 text-left">
+                        <h4 id="phone-notif-title" class="text-xs font-bold text-serene-white">Notification</h4>
+                        <p id="phone-notif-body" class="text-[10px] text-muted-sage leading-relaxed mt-0.5">Description...</p>
+                    </div>
+                    <button onclick="dismissPhoneNotif()" class="text-muted-sage hover:text-serene-white">
+                        <span class="material-symbols-outlined text-sm">close</span>
+                    </button>
+                </div>
+
+                <!-- Emergency Banner (flashing alert for companion when mother triggers SOS) -->
+                <div id="phone-emergency-sos-overlay" class="absolute inset-0 bg-red-950/95 z-[99] flex flex-col items-center justify-center p-8 text-center hidden">
+                    <span class="material-symbols-outlined text-[84px] text-critical-rose animate-bounce">emergency_share</span>
+                    <h2 class="text-2xl font-bold text-serene-white mt-4 uppercase tracking-wider">Emergency SOS Alert!</h2>
+                    <p class="text-sm text-soft-blush mt-2 leading-relaxed font-semibold">Elena has triggered an Emergency SOS alarm.</p>
+                    
+                    <div class="w-full mt-6 bg-black/40 border border-red-500/20 p-4 rounded-xl space-y-3 text-left">
+                        <div class="flex items-center justify-between text-xs text-muted-sage border-b border-white/5 pb-2">
+                            <span>Status:</span>
+                            <span class="text-critical-rose font-bold animate-pulse">Broadcasting Location...</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-maternity-mint">my_location</span>
+                            <span class="text-xs text-serene-white">Shared GPS: 37.7749° N, 122.4194° W</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-soft-blush">call</span>
+                            <span class="text-xs text-serene-white">Primary Companion: Mark (Husband)</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3 w-full mt-6">
+                        <button onclick="dismissSOSOverlay()" class="py-3 px-4 bg-white/10 hover:bg-white/20 text-serene-white text-xs font-bold rounded-full transition">
+                            Dismiss Alert
+                        </button>
+                        <a href="tel:+15550199" class="py-3 px-4 bg-critical-rose text-deep-charcoal text-xs font-bold rounded-full transition flex items-center justify-center gap-1">
+                            <span class="material-symbols-outlined text-sm">phone</span>
+                            <span>Call Elena</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Dynamic Viewport Area (contains the actual screen components) -->
+                <div id="phone-viewport" class="flex-1 overflow-y-auto no-scrollbar pb-[72px] flex flex-col relative text-left bg-background-dark select-none">
+                    
+                    <!-- SCREENS WILL BE INJECTED HERE VIA JS AND VISIBILITY SWITCHED -->
+
+                </div>
+
+                <!-- Bottom Navigation Bar (Phone mockup) -->
+                <nav id="phone-bottom-nav" class="absolute bottom-0 left-0 w-full bg-background-dark/95 border-t border-white/5 flex justify-around items-center pt-2 pb-5 z-[80] shrink-0">
+                    <button onclick="switchTab('home')" id="nav-home" class="flex flex-col items-center justify-center py-1 px-3 text-maternity-mint">
+                        <span class="material-symbols-outlined text-xl">home_health</span>
+                        <span class="text-[9px] font-bold mt-0.5">Home</span>
+                    </button>
+                    <button onclick="switchTab('chat')" id="nav-chat" class="flex flex-col items-center justify-center py-1 px-3 text-muted-sage hover:text-serene-white">
+                        <span class="material-symbols-outlined text-xl">smart_toy</span>
+                        <span class="text-[9px] font-bold mt-0.5">AI Assist</span>
+                    </button>
+                    <button onclick="switchTab('reports')" id="nav-reports" class="flex flex-col items-center justify-center py-1 px-3 text-muted-sage hover:text-serene-white">
+                        <span class="material-symbols-outlined text-xl">lab_research</span>
+                        <span class="text-[9px] font-bold mt-0.5">Reports</span>
+                    </button>
+                    <button onclick="switchTab('doctors')" id="nav-doctors" class="flex flex-col items-center justify-center py-1 px-3 text-muted-sage hover:text-serene-white">
+                        <span class="material-symbols-outlined text-xl">medical_services</span>
+                        <span class="text-[9px] font-bold mt-0.5">Doctors</span>
+                    </button>
+                    <button onclick="switchTab('profile')" id="nav-profile" class="flex flex-col items-center justify-center py-1 px-3 text-muted-sage hover:text-serene-white">
+                        <span class="material-symbols-outlined text-xl">person</span>
+                        <span class="text-[9px] font-bold mt-0.5">Profile</span>
+                    </button>
+                </nav>
+
+                <!-- Floating SOS button on Mother's screen (Bottom right contextual) -->
+                <button id="floating-sos-btn" onclick="openEmergencySupport()" class="fixed lg:absolute bottom-[80px] right-5 w-12 h-12 rounded-full bg-critical-rose text-deep-charcoal shadow-2xl flex items-center justify-center font-bold transition hover:scale-105 active:scale-95 z-[70] maternity-glow-critical">
+                    <span class="material-symbols-outlined text-[24px]">emergency</span>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Responsive bottom sheet for mobile-only Role Control -->
+    <div class="lg:hidden w-full max-w-sm mt-6 p-4 glass-card rounded-2xl border-white/5 space-y-3">
+        <h4 class="text-xs font-bold text-muted-sage uppercase tracking-wider text-center">Prototype Role Controller</h4>
+        <div class="grid grid-cols-3 gap-1 bg-deep-charcoal p-1 rounded-xl border border-white/5">
+            <button onclick="switchRole('mother')" id="mob-role-mother" class="py-2 text-[10px] font-bold rounded-lg bg-maternity-mint text-deep-charcoal">Mother</button>
+            <button onclick="switchRole('companion')" id="mob-role-companion" class="py-2 text-[10px] font-bold rounded-lg text-muted-sage">Companion</button>
+            <button onclick="switchRole('doctor')" id="mob-role-doctor" class="py-2 text-[10px] font-bold rounded-lg text-muted-sage">Doctor</button>
+        </div>
+        <div class="grid grid-cols-2 gap-2 text-center">
+            <button onclick="triggerNotification('water')" class="text-[10px] py-2 rounded-lg bg-white/5 border border-white/5 text-serene-white">Water Notif</button>
+            <button onclick="triggerNotification('alert')" class="text-[10px] py-2 rounded-lg bg-red-950/20 border border-red-500/20 text-critical-rose">Mother SOS</button>
+        </div>
+    </div>
+
+    <!-- State & Prototype Logic Script -->
+    <script>
+        // Simulated Database State
+        const db = {
+            mother: {
+                name: "Elena Rostova",
+                weeks: 24,
+                days: 3,
+                dueDate: "Oct 12, 2026",
+                daysToGo: 109,
+                trimester: "2nd Trimester",
+                waterLogged: 1250, // ml
+                waterTarget: 2500, // ml
+                stepsLogged: 6450,
+                stepsTarget: 8000,
+                wellnessScore: 84,
+                medications: [
+                    { id: 1, name: "Prenatal Multivitamin", dose: "1 Capsule", time: "08:00 AM", taken: true },
+                    { id: 2, name: "Iron Supplement", dose: "200 mg", time: "02:00 PM", taken: false },
+                    { id: 3, name: "DHA Omega-3", dose: "1 Capsule", time: "08:00 PM", taken: false }
+                ],
+                appointments: [
+                    { id: 1, doctor: "Dr. Sarah Jenkins", type: "Obstetrics Consultation & Ultrasound Checkup", time: "Today at 02:00 PM", status: "confirmed" },
+                    { id: 2, doctor: "Dr. Maya Lin", type: "Prenatal Nutrition Counseling Session", time: "Jul 02, 2026 at 10:00 AM", status: "scheduled" }
+                ],
+                prescriptions: [
+                    { id: 1, doctor: "Dr. Sarah Jenkins", date: "Jun 15, 2026", drug: "Folic Acid 5mg", directions: "Take 1 tablet daily with milk in the morning" },
+                    { id: 2, doctor: "Dr. Sarah Jenkins", date: "Jun 15, 2026", drug: "Iron Supplement 200mg", directions: "Take 1 capsule daily after lunch. Avoid taking with tea." }
+                ],
+                chatHistory: [
+                    { sender: "ai", text: "Hello Elena, I'm Bloom. How can I assist you with your pregnancy journey today?", time: "09:00 AM" }
+                ],
+                reports: [
+                    { id: "REP001", name: "1st Trimester Genetic Screening", date: "Mar 12, 2026", type: "Ultrasound & Blood", summary: "All markers normal. Trisomy risk: Very Low." },
+                    { id: "REP002", name: "Glucose Tolerance Panel", date: "May 20, 2026", type: "Blood Panel", summary: "Blood Glucose levels within limits. No signs of Gestational Diabetes." }
+                ]
+            },
+            companion: {
+                name: "Mark Rostov",
+                roleName: "Husband / Companion",
+                code: "BLOOM-CO-9981",
+                remindersSent: []
+            },
+            doctor: {
+                name: "Dr. Sarah Jenkins",
+                specialty: "Obstetrician & Gynecologist",
+                hospital: "Sanctuary Maternal Center",
+                appointmentsRequests: [
+                    { id: 101, patient: "Elena Rostova", time: "Today, 02:00 PM", urgency: "Routine Review" },
+                    { id: 102, patient: "Maria Gonzalez", time: "Tomorrow, 09:30 AM", urgency: "Follow-up" }
+                ]
+            }
+        };
+
+        // Application Navigation State
+        let currentRole = "mother"; // mother | companion | doctor
+        let currentTab = "home"; // home | chat | reports | doctors | profile
+        let currentSubPage = null; // null | 'waiting-room' | 'booking-page' | 'emergency-page' | 'report-scan' | 'report-detail'
+        let selectedDoctor = null;
+
+        // Custom logs functions
+        function logAction(msg) {
+            const box = document.getElementById("console-log-box");
+            if (box) {
+                const now = new Date().toLocaleTimeString();
+                box.innerHTML += `<div>[${now}] ${msg}</div>`;
+                box.scrollTop = box.scrollHeight;
+            }
+        }
+
+        // ================= SWITCH ROLES AND RE-RENDER =================
+        function switchRole(role) {
+            currentRole = role;
+            logAction(`Switched role to: ${role.toUpperCase()}`);
+            
+            // Highlight role buttons on desktop
+            document.querySelectorAll("[id^='role-btn-']").forEach(btn => {
+                btn.className = "py-2 text-[11px] font-bold rounded-lg transition-all text-muted-sage hover:text-serene-white";
+            });
+            const activeBtn = document.getElementById(`role-btn-${role}`);
+            if (activeBtn) {
+                activeBtn.className = "py-2 text-[11px] font-bold rounded-lg transition-all text-deep-charcoal bg-maternity-mint";
+            }
+
+            // Highlight role buttons on mobile
+            document.querySelectorAll("[id^='mob-role-']").forEach(btn => {
+                btn.className = "py-2 text-[10px] font-bold rounded-lg text-muted-sage";
+            });
+            const activeMobBtn = document.getElementById(`mob-role-${role}`);
+            if (activeMobBtn) {
+                activeMobBtn.className = "py-2 text-[10px] font-bold rounded-lg bg-maternity-mint text-deep-charcoal";
+            }
+
+            // Adapt bottom navigation and display state
+            const nav = document.getElementById("phone-bottom-nav");
+            const floatingSos = document.getElementById("floating-sos-btn");
+
+            if (role === "doctor") {
+                nav.style.display = "none";
+                floatingSos.style.display = "none";
+                currentTab = "doctor-portal";
+            } else if (role === "companion") {
+                nav.style.display = "none";
+                floatingSos.style.display = "none";
+                currentTab = "companion-portal";
+            } else {
+                nav.style.display = "flex";
+                floatingSos.style.display = "flex";
+                currentTab = "home";
+            }
+            
+            currentSubPage = null;
+            renderViewport();
+        }
+
+        // ================= NAVIGATION SYSTEM =================
+        function switchTab(tab) {
+            currentTab = tab;
+            currentSubPage = null;
+            logAction(`Switched tab to: ${tab.toUpperCase()}`);
+
+            // Update tab styles
+            const navButtons = document.querySelectorAll("#phone-bottom-nav button");
+            navButtons.forEach(btn => {
+                btn.className = "flex flex-col items-center justify-center py-1 px-3 text-muted-sage hover:text-serene-white";
+            });
+
+            const activeBtn = document.getElementById(`nav-${tab}`);
+            if (activeBtn) {
+                activeBtn.className = "flex flex-col items-center justify-center py-1 px-3 text-maternity-mint";
+            }
+
+            renderViewport();
+        }
+
+        function switchSubPage(sub) {
+            currentSubPage = sub;
+            logAction(`Navigation subpage: ${sub ? sub.toUpperCase() : 'NONE'}`);
+            renderViewport();
+        }
+
+        // Update real clock time in status bar
+        function updateTime() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById("statusBarTime").innerText = `${hours}:${minutes}`;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // Increment Water Intake Interaction
+        function incrementWater() {
+            db.mother.waterLogged += 250;
+            if (db.mother.waterLogged > db.mother.waterTarget) {
+                db.mother.waterLogged = db.mother.waterTarget;
+            }
+            logAction(`Mother logged 250ml water. Total: ${db.mother.waterLogged}ml.`);
+            renderViewport();
+        }
+
+        // Toggle Medication Reminder Checkboxes
+        function toggleMedication(id) {
+            const med = db.mother.medications.find(m => m.id === id);
+            if (med) {
+                med.taken = !med.taken;
+                logAction(`Medication '${med.name}' marked as ${med.taken ? 'Taken' : 'Not Taken'}`);
+                
+                // Recalculate wellness score based on health habits
+                const takenCount = db.mother.medications.filter(m => m.taken).length;
+                db.mother.wellnessScore = 70 + (takenCount * 5) + Math.round((db.mother.waterLogged / db.mother.waterTarget) * 15);
+                if (db.mother.wellnessScore > 100) db.mother.wellnessScore = 100;
+                
+                renderViewport();
+            }
+        }
+
+        // ================= GLOBAL TOASTS =================
+        function showToast(title, message, type = "mint") {
+            const toast = document.getElementById("global-toast");
+            const iconBg = document.getElementById("toast-icon-bg");
+            const icon = document.getElementById("toast-icon");
+            const titleEl = document.getElementById("toast-title");
+            const msgEl = document.getElementById("toast-message");
+
+            titleEl.innerText = title;
+            msgEl.innerText = message;
+
+            if (type === "mint") {
+                iconBg.className = "p-2 rounded-lg flex items-center justify-center bg-maternity-mint/20 text-maternity-mint";
+                icon.innerText = "check_circle";
+            } else if (type === "amber") {
+                iconBg.className = "p-2 rounded-lg flex items-center justify-center bg-warning-amber/20 text-warning-amber";
+                icon.innerText = "warning";
+            } else if (type === "rose") {
+                iconBg.className = "p-2 rounded-lg flex items-center justify-center bg-critical-rose/20 text-critical-rose animate-pulse";
+                icon.innerText = "emergency";
+            } else if (type === "blue") {
+                iconBg.className = "p-2 rounded-lg flex items-center justify-center bg-serene-blue/20 text-serene-blue";
+                icon.innerText = "water_drop";
+            }
+
+            toast.style.pointerEvents = "auto";
+            toast.className = toast.className.replace("scale-0 translate-y-[-20px]", "scale-100 translate-y-0 toast-slide");
+
+            setTimeout(hideToast, 5000);
+        }
+
+        function hideToast() {
+            const toast = document.getElementById("global-toast");
+            toast.className = toast.className.replace("scale-100 translate-y-0 toast-slide", "scale-0 translate-y-[-20px]");
+            toast.style.pointerEvents = "none";
+        }
+
+        // ================= IN-APP PHONE BANNER NOTIFICATIONS =================
+        function showPhoneNotification(title, body, icon = "notifications", colorClass = "text-maternity-mint", bgClass = "bg-maternity-mint/10") {
+            const banner = document.getElementById("phone-notification-banner");
+            const iconBg = document.getElementById("phone-notif-icon-bg");
+            const iconEl = document.getElementById("phone-notif-icon");
+            const titleEl = document.getElementById("phone-notif-title");
+            const bodyEl = document.getElementById("phone-notif-body");
+
+            iconEl.innerText = icon;
+            titleEl.innerText = title;
+            bodyEl.innerText = body;
+            iconBg.className = `w-8 h-8 rounded-lg flex items-center justify-center ${bgClass} ${colorClass}`;
+
+            banner.className = banner.className.replace("scale-0 -translate-y-4", "scale-100 translate-y-0");
+
+            // Play small audio click indicator if needed
+            logAction(`Phone Notification: "${title}" - ${body}`);
+            
+            setTimeout(dismissPhoneNotif, 6000);
+        }
+
+        function dismissPhoneNotif() {
+            const banner = document.getElementById("phone-notification-banner");
+            banner.className = banner.className.replace("scale-100 translate-y-0", "scale-0 -translate-y-4");
+        }
+
+        // ================= SYSTEM SIMULATED NOTIFICATION TRIGGERS =================
+        function triggerNotification(type) {
+            if (type === "water") {
+                showPhoneNotification(
+                    "Hydration Reminder", 
+                    "Elena, you've only logged 1.2L of water. Drink 250ml now to keep your amniotic fluid levels optimal.",
+                    "water_drop",
+                    "text-serene-blue",
+                    "bg-serene-blue/10"
+                );
+                showToast("Hydration Triggered", "Sent Hydration Reminder alert to Mother's device.", "blue");
+            } else if (type === "med") {
+                showPhoneNotification(
+                    "Medication Reminder", 
+                    "It's time to take your Iron Supplement (200 mg). Mark it off on your schedule once completed.",
+                    "pill",
+                    "text-soft-blush",
+                    "bg-soft-blush/10"
+                );
+                showToast("Medication Triggered", "Sent Medication Reminder alert to Mother's device.", "mint");
+            } else if (type === "prescription") {
+                // Add new prescription to state
+                db.mother.prescriptions.push({
+                    id: Date.now(),
+                    doctor: "Dr. Sarah Jenkins",
+                    date: "Today",
+                    drug: "Calcium Citrate 500mg",
+                    directions: "Take 1 tablet twice daily with food to support fetal skeletal growth"
+                });
+                showPhoneNotification(
+                    "New Prescription Uploaded",
+                    "Dr. Sarah Jenkins has sent a new digital prescription for Calcium Citrate 500mg. Review instructions.",
+                    "prescriptions",
+                    "text-maternity-mint",
+                    "bg-maternity-mint/10"
+                );
+                showToast("Prescription Pushed", "Doctor prescription added and alert generated.", "mint");
+                if (currentRole === "mother") {
+                    renderViewport();
+                }
+            } else if (type === "alert") {
+                // Emergency SOS triggered by Mother
+                const island = document.getElementById("dynamic-island");
+                const indicator = document.getElementById("island-active-indicator");
+                
+                island.className = "absolute left-1/2 -translate-x-1/2 top-2.5 w-[140px] h-[28px] bg-red-950/90 rounded-full flex items-center justify-center border border-red-500/40 z-[100] transition-all duration-300";
+                indicator.className = "flex items-center justify-center gap-1 text-[9px] text-critical-rose scale-100 opacity-100 transition-all duration-300";
+                
+                // Show SOS Screen overlay inside Phone mockup
+                const sosOverlay = document.getElementById("phone-emergency-sos-overlay");
+                sosOverlay.classList.remove("hidden");
+                
+                showToast("Emergency Alarm Live", "Broadcasting critical emergency coordinates to companions & doctor.", "rose");
+                logAction("EMERGENCY CRITICAL SOS SIGNAL RECEIVED FROM MOTHER!");
+            }
+        }
+
+        function dismissSOSOverlay() {
+            const sosOverlay = document.getElementById("phone-emergency-sos-overlay");
+            sosOverlay.classList.add("hidden");
+
+            const island = document.getElementById("dynamic-island");
+            const indicator = document.getElementById("island-active-indicator");
+            
+            island.className = "absolute left-1/2 -translate-x-1/2 top-2.5 w-[110px] h-[22px] bg-black rounded-full flex items-center justify-center border border-white/10 z-[100] transition-all duration-300";
+            indicator.className = "flex items-center justify-center gap-1 text-[9px] text-maternity-mint scale-0 opacity-0 transition-all duration-300";
+            
+            logAction("Emergency SOS signal resolved / dismissed.");
+        }
+
+        function clearConsoleLog() {
+            const box = document.getElementById("console-log-box");
+            if (box) box.innerHTML = "<div>[SYSTEM] Console logs cleared.</div>";
+        }
+
+        // ================= EMERGENCY CONTROLS =================
+        function openEmergencySupport() {
+            switchSubPage('emergency-page');
+        }
+
+        // ================= AI CHAT ASSISTANT SIMULATOR =================
+        function sendChatMessage() {
+            const input = document.getElementById("chat-input-text");
+            if (!input || !input.value.trim()) return;
+
+            const text = input.value;
+            input.value = "";
+
+            // Push mother message
+            db.mother.chatHistory.push({ sender: "user", text: text, time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) });
+            renderChatHistory();
+            logAction(`AI Chat query sent: "${text}"`);
+
+            // Trigger AI response after short delay
+            setTimeout(() => {
+                const responseText = getAIResponse(text);
+                db.mother.chatHistory.push({ sender: "ai", text: responseText, time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) });
+                renderChatHistory();
+                logAction("AI Chat generated personalized medical-reassuring response.");
+            }, 1000);
+        }
+
+        function askQuickQuestion(query) {
+            currentTab = "chat";
+            currentSubPage = null;
+            renderViewport();
+            
+            // Inject query into chat input or trigger directly
+            setTimeout(() => {
+                const input = document.getElementById("chat-input-text");
+                if (input) {
+                    input.value = query;
+                    sendChatMessage();
+                }
+            }, 100);
+        }
+
+        function getAIResponse(query) {
+            const lower = query.toLowerCase();
+            if (lower.includes("heartburn") || lower.includes("acid")) {
+                return "Heartburn is common in week 24 because progesterone relaxes the valve between your stomach and esophagus. Try eating smaller meals, avoiding lying down for 2 hours post-meal, and drinking ginger tea. *Remember: AI assists, doctors decide. Consult Dr. Sarah Jenkins if heartburn becomes severe.*";
+            }
+            if (lower.includes("water") || lower.includes("hydrate")) {
+                return "Staying hydrated supports amniotic fluid volumes and prevents preterm contractions. Since your current score shows 1.2L logged, aim for an additional 800ml. *Remember: AI assists, doctors decide.*";
+            }
+            if (lower.includes("kick") || lower.includes("move")) {
+                return "Around week 24, babies are active and sleep in cycles. Feeling 10 movements within a 2-hour window is a healthy baseline. If movement decreases, try a glass of cold water and lie on your left side. *Remember: AI assists, doctors decide.*";
+            }
+            if (lower.includes("pain") || lower.includes("cramp")) {
+                return "Mild cramping can be due to round ligament stretching. However, if the cramping is severe, rhythmic, or accompanied by spotting, contact emergency support immediately. *Remember: AI assists, doctors decide.*";
+            }
+            return "Based on your clinical record (Week 24, Day 3), this symptom is common, but it's important to monitor it. Rest, stay hydrated, and document any changes. *Disclaimer: AI assists, doctors decide. Contact your OB/GYN Dr. Sarah Jenkins if symptoms persist.*";
+        }
+
+        function renderChatHistory() {
+            const chatBox = document.getElementById("chat-bubbles-container");
+            if (!chatBox) return;
+
+            chatBox.innerHTML = db.mother.chatHistory.map(msg => {
+                if (msg.sender === "user") {
+                    return `
+                        <div class="flex flex-col items-end space-y-1 max-w-[85%] self-end">
+                            <div class="bg-maternity-mint text-deep-charcoal text-xs px-3.5 py-2.5 rounded-2xl rounded-tr-none font-medium">
+                                ${msg.text}
+                            </div>
+                            <span class="text-[9px] text-muted-sage">${msg.time}</span>
+                        </div>
+                    `;
+                } else {
+                    return `
+                        <div class="flex items-start gap-2 max-w-[85%]">
+                            <div class="w-7 h-7 rounded-full bg-maternity-mint/10 flex items-center justify-center text-maternity-mint shrink-0 mt-1">
+                                <span class="material-symbols-outlined text-sm">smart_toy</span>
+                            </div>
+                            <div class="flex flex-col space-y-1">
+                                <div class="glass-card text-xs px-3.5 py-2.5 rounded-2xl rounded-tl-none text-serene-white border-white/5 bg-white/5 leading-relaxed">
+                                    ${msg.text}
+                                </div>
+                                <span class="text-[9px] text-muted-sage">${msg.time}</span>
+                            </div>
+                        </div>
+                    `;
+                }
+            }).join("");
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // ================= REPORT SCAN ANIMATION & OCR =================
+        function startReportScan() {
+            switchSubPage('report-scan');
+            logAction("Report upload detected. Processing document extraction pipeline.");
+            
+            // Stage animations
+            setTimeout(() => {
+                const textStatus = document.getElementById("scan-status-text");
+                if (textStatus) textStatus.innerText = "Running OCR & Extracting Biometric Values...";
+            }, 1500);
+
+            setTimeout(() => {
+                const textStatus = document.getElementById("scan-status-text");
+                if (textStatus) textStatus.innerText = "Cross-referencing with AI Guidelines...";
+            }, 3000);
+
+            setTimeout(() => {
+                // Complete scan, push report to db and show result
+                db.mother.reports.unshift({
+                    id: "REP003",
+                    name: "Routine Second Trimester CBC Panel",
+                    date: "Today",
+                    type: "Blood Panel",
+                    summary: "Slightly low hemoglobin detected (11.2 g/dL). Recommend iron adjustment."
+                });
+                switchSubPage('report-detail');
+                logAction("OCR scanning complete. Extracted Hemoglobin and Glucose levels.");
+            }, 4500);
+        }
+
+        // ================= BOOKING APPOINTMENTS INTERACTION =================
+        function bookDoctorAppointment() {
+            const dateInput = document.getElementById("booking-date");
+            const timeInput = document.getElementById("booking-time");
+
+            if (!dateInput || !dateInput.value || !timeInput || !timeInput.value) {
+                alert("Please select a valid date and time.");
+                return;
+            }
+
+            // Create appointment
+            db.mother.appointments.push({
+                id: Date.now(),
+                doctor: selectedDoctor.name,
+                type: "Pregnancy Checkup / Video Consultation",
+                time: `${dateInput.value} at ${timeInput.value}`,
+                status: "confirmed"
+            });
+
+            logAction(`New appointment booked with ${selectedDoctor.name} on ${dateInput.value} at ${timeInput.value}`);
+            showToast("Appointment Booked", `Confirmed checkup with ${selectedDoctor.name}.`, "mint");
+            switchTab('doctors');
+        }
+
+        // ================= DOCTOR PORTAL FUNCTIONS =================
+        function doctorApproveAppointment(id) {
+            db.doctor.appointmentsRequests = db.doctor.appointmentsRequests.filter(req => req.id !== id);
+            logAction(`Dr. Jenkins approved appointment ID ${id}.`);
+            showToast("Appointment Approved", "Patient has been notified of the confirmation.", "mint");
+            renderViewport();
+        }
+
+        function doctorUploadPrescription() {
+            const drug = document.getElementById("dr-presc-drug").value;
+            const dose = document.getElementById("dr-presc-dose").value;
+            const instructions = document.getElementById("dr-presc-instructions").value;
+
+            if (!drug || !dose || !instructions) {
+                alert("Please complete all prescription fields.");
+                return;
+            }
+
+            db.mother.prescriptions.unshift({
+                id: Date.now(),
+                doctor: "Dr. Sarah Jenkins",
+                date: "Today",
+                drug: `${drug} ${dose}`,
+                directions: instructions
+            });
+
+            logAction(`Dr. Jenkins prescribed ${drug} ${dose}: ${instructions}`);
+            showToast("Prescription Pushed", `Prescribed ${drug} for patient.`, "mint");
+
+            // Reset Form
+            document.getElementById("dr-presc-drug").value = "";
+            document.getElementById("dr-presc-dose").value = "";
+            document.getElementById("dr-presc-instructions").value = "";
+            
+            renderViewport();
+        }
+
+        // ================= COMPANION PORTAL FUNCTIONS =================
+        function companionSendReminder() {
+            const reminderType = document.getElementById("companion-custom-reminder-select").value;
+            let title = "Family Companion Ping";
+            let body = "Mark sent you a wellness reminder.";
+            let icon = "heart_health";
+            let color = "text-lavender-bloom";
+            let bg = "bg-lavender-bloom/10";
+
+            if (reminderType === "water") {
+                title = "Companion: Hydrate!";
+                body = "Mark noticed your water level is low. Grab a glass of water now!";
+                icon = "water_drop";
+                color = "text-serene-blue";
+                bg = "bg-serene-blue/10";
+            } else if (reminderType === "rest") {
+                title = "Companion: Take a break!";
+                body = "Mark sent a reminder to lie down and rest for a bit.";
+                icon = "bedtime";
+                color = "text-soft-blush";
+                bg = "bg-soft-blush/10";
+            } else if (reminderType === "walk") {
+                title = "Companion: Step Alert";
+                body = "Time for a light, healthy walk in the fresh air.";
+                icon = "directions_walk";
+                color = "text-maternity-mint";
+                bg = "bg-maternity-mint/10";
+            }
+
+            // Sync to companion history
+            db.companion.remindersSent.unshift({
+                id: Date.now(),
+                text: title,
+                time: "Just Now"
+            });
+
+            // Trigger notification banner
+            showPhoneNotification(title, body, icon, color, bg);
+            showToast("Reminder Broadcasted", "Pushed Companion reminder directly to Mother's phone.", "mint");
+            renderViewport();
+        }
+
+        function generateNewInviteCode() {
+            const randomCode = "BLOOM-CO-" + Math.floor(1000 + Math.random() * 9000);
+            db.companion.code = randomCode;
+            logAction(`Generated new companion invite link with code: ${randomCode}`);
+            renderViewport();
+        }
+
+        // ================= VIEWPORT RENDER LOGIC (SPA CONTROLLER) =================
+        function renderViewport() {
+            const vp = document.getElementById("phone-viewport");
+            let html = "";
+
+            // Hide/Show floating SOS button based on role
+            const floatingSos = document.getElementById("floating-sos-btn");
+            if (currentRole === "mother" && !currentSubPage) {
+                floatingSos.style.display = "flex";
+            } else {
+                floatingSos.style.display = "none";
+            }
+
+            // 1. CHOOSE CORRESPONDING ROLE VIEWS
+            if (currentSubPage) {
+                // A. Handle Subpage navigation
+                if (currentSubPage === 'emergency-page') {
+                    html = renderEmergencyScreen();
+                } else if (currentSubPage === 'report-scan') {
+                    html = renderReportScanScreen();
+                } else if (currentSubPage === 'report-detail') {
+                    html = renderReportDetailScreen();
+                } else if (currentSubPage === 'booking-page') {
+                    html = renderBookingScreen();
+                } else if (currentSubPage === 'waiting-room') {
+                    html = renderWaitingRoomScreen();
+                }
+            } else {
+                // B. Handle Tab navigation
+                if (currentRole === 'mother') {
+                    switch (currentTab) {
+                        case 'home':
+                            html = renderMotherHome();
+                            break;
+                        case 'chat':
+                            html = renderMotherChat();
+                            break;
+                        case 'reports':
+                            html = renderMotherReports();
+                            break;
+                        case 'doctors':
+                            html = renderMotherDoctors();
+                            break;
+                        case 'profile':
+                            html = renderMotherProfile();
+                            break;
+                    }
+                } else if (currentRole === 'companion') {
+                    html = renderCompanionPortal();
+                } else if (currentRole === 'doctor') {
+                    html = renderDoctorPortal();
+                }
+            }
+
+            vp.innerHTML = html;
+
+            // Trigger scroll/renders for nested elements
+            if (currentTab === 'chat' && !currentSubPage) {
+                renderChatHistory();
+            }
+        }
+
+        // ================= SCREEN GENERATION TEMPLATES =================
+
+        // 1. MOTHER ROLE SCREENS
+        function renderMotherHome() {
+            const percentWater = Math.round((db.mother.waterLogged / db.mother.waterTarget) * 100);
+            const medItems = db.mother.medications.map(med => `
+                <div class="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/5">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined ${med.taken ? 'text-maternity-mint' : 'text-muted-sage'}">
+                            ${med.taken ? 'check_circle' : 'circle'}
+                        </span>
+                        <div>
+                            <p class="text-xs font-bold ${med.taken ? 'line-through text-muted-sage' : 'text-serene-white'}">${med.name}</p>
+                            <p class="text-[10px] text-muted-sage">${med.dose} • ${med.time}</p>
+                        </div>
+                    </div>
+                    <button onclick="toggleMedication(${med.id})" class="text-[10px] font-bold px-3 py-1 rounded-full ${med.taken ? 'bg-white/5 text-muted-sage' : 'bg-maternity-mint text-deep-charcoal'}">
+                        ${med.taken ? 'Undo' : 'Take'}
+                    </button>
+                </div>
+            `).join("");
+
+            const appointmentItems = db.mother.appointments.map(app => `
+                <div class="p-3.5 rounded-2xl bg-white/5 border border-white/5 space-y-2">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="text-xs font-bold text-serene-white">${app.doctor}</h4>
+                            <p class="text-[10px] text-muted-sage leading-relaxed mt-0.5">${app.type}</p>
+                        </div>
+                        <span class="text-[10px] uppercase font-bold text-maternity-mint bg-maternity-mint/10 px-2 py-0.5 rounded">Confirmed</span>
+                    </div>
+                    <div class="flex items-center justify-between pt-1">
+                        <span class="text-[10px] text-muted-sage flex items-center gap-1">
+                            <span class="material-symbols-outlined text-xs">schedule</span>
+                            ${app.time}
+                        </span>
+                        ${app.time.includes('Today') ? `
+                            <button onclick="switchSubPage('waiting-room')" class="text-[10px] font-bold px-3.5 py-1.5 rounded-full bg-serene-blue text-deep-charcoal flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[12px] animate-pulse">videocam</span>
+                                Join Room
+                            </button>
+                        ` : ''}
+                    </div>
+                </div>
+            `).join("");
+
+            return `
+                <!-- Top Nav Bar -->
+                <header class="sticky top-0 bg-background-dark/90 backdrop-blur-md border-b border-white/5 flex justify-between items-center px-5 py-3 z-50">
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-8 h-8 rounded-full border border-maternity-mint/30 overflow-hidden">
+                            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop" alt="Elena Avatar"/>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-bold text-muted-sage uppercase tracking-wider">Good Morning, Elena</p>
+                            <h1 class="text-sm font-bold text-serene-white flex items-center gap-1.5">
+                                <span>Week ${db.mother.weeks}, Day ${db.mother.days}</span>
+                                <span class="text-[10px] text-maternity-mint bg-maternity-mint/15 px-2 py-0.5 rounded-full font-bold">2nd Trimester</span>
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="showPhoneNotification('Milestone Unlocked!', 'You are now 60% through your pregnancy! Baby is sized like a mango.', 'celebration', 'text-soft-blush', 'bg-soft-blush/10')" class="text-serene-white hover:text-maternity-mint">
+                            <span class="material-symbols-outlined text-[22px]">notifications</span>
+                        </button>
+                    </div>
+                </header>
+
+                <div class="p-5 space-y-6">
+                    <!-- Progress Card / Bento Grid Top -->
+                    <div class="grid grid-cols-12 gap-4">
+                        <!-- Left Circular Tracker -->
+                        <div class="col-span-7 glass-card p-4 rounded-2xl flex flex-col justify-between relative overflow-hidden maternity-glow-mint">
+                            <div class="absolute -right-3 -top-3 w-20 h-20 bg-maternity-mint/5 rounded-full filter blur-xl"></div>
+                            <div class="space-y-0.5">
+                                <h3 class="text-xs font-bold text-serene-white">Wellness Score</h3>
+                                <p class="text-[10px] text-muted-sage">Health baseline is optimal</p>
+                            </div>
+                            <div class="my-4 flex items-baseline gap-1">
+                                <span class="text-3xl font-extrabold text-maternity-mint">${db.mother.wellnessScore}</span>
+                                <span class="text-xs text-muted-sage">/100</span>
+                            </div>
+                            <div class="space-y-1.5">
+                                <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                                    <div class="h-full progress-gradient-mint-blush rounded-full" style="width: ${db.mother.wellnessScore}%"></div>
+                                </div>
+                                <div class="flex justify-between text-[9px] text-muted-sage">
+                                    <span>Excellent</span>
+                                    <span>Goal: 90</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Baby Size Tracker -->
+                        <div class="col-span-5 glass-card p-4 rounded-2xl flex flex-col items-center justify-center text-center space-y-3">
+                            <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center relative overflow-hidden">
+                                <span class="material-symbols-outlined text-[36px] text-soft-blush animate-pulse">baby_changing_station</span>
+                                <div class="absolute inset-0 border border-soft-blush/15 rounded-full"></div>
+                            </div>
+                            <div class="space-y-0.5">
+                                <span class="text-[9px] font-bold text-soft-blush uppercase tracking-wider">Baby Size</span>
+                                <h4 class="text-xs font-bold text-serene-white">Mango (29cm)</h4>
+                                <p class="text-[9px] text-muted-sage">${db.mother.daysToGo} Days to Go</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI Assistant Quick Access -->
+                    <div class="glass-card p-4 rounded-2xl border-maternity-mint/10 bg-gradient-to-br from-maternity-mint/5 to-transparent space-y-3">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-maternity-mint text-xl">smart_toy</span>
+                            <span class="text-xs font-bold text-serene-white">Ask Bloom AI Assistant</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-[10px]">
+                            <button onclick="askQuickQuestion('Why do I have heartburn in week 24?')" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-serene-white text-left transition truncate">
+                                🔍 Why do I have heartburn?
+                            </button>
+                            <button onclick="askQuickQuestion('What is a normal kick count?')" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-serene-white text-left transition truncate">
+                                🔍 Normal kick count?
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Vital metrics scrollable row -->
+                    <div class="space-y-2">
+                        <h3 class="text-xs font-bold text-serene-white uppercase tracking-wider">Vital Metrics</h3>
+                        <div class="flex gap-3 overflow-x-auto no-scrollbar pb-1.5 snap-x">
+                            
+                            <!-- Water Card -->
+                            <div class="min-w-[130px] glass-card p-3.5 rounded-xl snap-start flex flex-col justify-between space-y-3 border-serene-blue/20">
+                                <div class="flex justify-between items-center">
+                                    <div class="w-8 h-8 rounded-lg bg-serene-blue/10 flex items-center justify-center text-serene-blue">
+                                        <span class="material-symbols-outlined text-lg">water_drop</span>
+                                    </div>
+                                    <button onclick="incrementWater()" class="w-6 h-6 rounded-full bg-serene-blue/20 hover:bg-serene-blue/30 text-serene-blue flex items-center justify-center active:scale-90 transition">
+                                        <span class="material-symbols-outlined text-sm">add</span>
+                                    </button>
+                                </div>
+                                <div>
+                                    <p class="text-[9px] font-bold text-muted-sage uppercase">Water</p>
+                                    <p class="text-sm font-bold text-serene-white">${db.mother.waterLogged}ml <span class="text-[9px] text-muted-sage font-normal">/ ${db.mother.waterTarget}</span></p>
+                                    <div class="h-1 bg-white/5 rounded-full mt-1.5 overflow-hidden">
+                                        <div class="h-full progress-gradient-blue" style="width: ${percentWater}%"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Steps Card -->
+                            <div class="min-w-[130px] glass-card p-3.5 rounded-xl snap-start flex flex-col justify-between space-y-3">
+                                <div class="w-8 h-8 rounded-lg bg-maternity-mint/10 flex items-center justify-center text-maternity-mint">
+                                    <span class="material-symbols-outlined text-lg">directions_walk</span>
+                                </div>
+                                <div>
+                                    <p class="text-[9px] font-bold text-muted-sage uppercase">Steps</p>
+                                    <p class="text-sm font-bold text-serene-white">${db.mother.stepsLogged} <span class="text-[9px] text-muted-sage font-normal">/ ${db.mother.stepsTarget}</span></p>
+                                    <p class="text-[9px] text-maternity-mint mt-1">80% of goal</p>
+                                </div>
+                            </div>
+
+                            <!-- Sleep Card -->
+                            <div class="min-w-[130px] glass-card p-3.5 rounded-xl snap-start flex flex-col justify-between space-y-3">
+                                <div class="w-8 h-8 rounded-lg bg-lavender-bloom/10 flex items-center justify-center text-lavender-bloom">
+                                    <span class="material-symbols-outlined text-lg">bedtime</span>
+                                </div>
+                                <div>
+                                    <p class="text-[9px] font-bold text-muted-sage uppercase">Sleep</p>
+                                    <p class="text-sm font-bold text-serene-white">8.2 hrs <span class="text-[9px] text-muted-sage font-normal">avg</span></p>
+                                    <p class="text-[9px] text-lavender-bloom mt-1">Deep sleep: 2.1h</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Medication Reminder Card -->
+                    <div class="space-y-2">
+                        <h3 class="text-xs font-bold text-serene-white uppercase tracking-wider">Today's Schedule & Medications</h3>
+                        <div class="space-y-2.5">
+                            ${medItems}
+                        </div>
+                    </div>
+
+                    <!-- Upcoming Appointments -->
+                    <div class="space-y-2">
+                        <h3 class="text-xs font-bold text-serene-white uppercase tracking-wider">Consultations & Visits</h3>
+                        <div class="space-y-2.5">
+                            ${appointmentItems}
+                        </div>
+                    </div>
+
+                    <!-- Pregnancy Milestones -->
+                    <div class="glass-card p-4 rounded-2xl border-white/5 space-y-3">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xs font-bold text-serene-white uppercase">Pregnancy Milestones</h3>
+                            <span class="text-[10px] text-maternity-mint">Step 12 of 20</span>
+                        </div>
+                        <div class="space-y-2.5">
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-maternity-mint text-sm mt-0.5">check_circle</span>
+                                <div>
+                                    <h4 class="text-xs font-bold text-serene-white">First Heartbeat Sound</h4>
+                                    <p class="text-[9px] text-muted-sage">Week 10 • Auditory milestone completed</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-soft-blush text-sm mt-0.5">radio_button_checked</span>
+                                <div>
+                                    <h4 class="text-xs font-bold text-serene-white">Sugar Tolerance Screening</h4>
+                                    <p class="text-[9px] text-muted-sage">Week 24 (Scheduled Today) • In Progress</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 opacity-50">
+                                <span class="material-symbols-outlined text-muted-sage text-sm mt-0.5">circle</span>
+                                <div>
+                                    <h4 class="text-xs font-bold text-muted-sage">Third Trimester Ultrasound</h4>
+                                    <p class="text-[9px] text-muted-sage">Week 32 • Upcoming</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderMotherChat() {
+            return `
+                <header class="sticky top-0 bg-background-dark/90 backdrop-blur-md border-b border-white/5 flex items-center justify-between px-5 py-3 z-50">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-maternity-mint text-xl">smart_toy</span>
+                        <div>
+                            <h1 class="text-xs font-bold text-serene-white">Bloom AI Health Assistant</h1>
+                            <p class="text-[9px] text-muted-sage">Active • Trained OB/GYN Core</p>
+                        </div>
+                    </div>
+                    <button onclick="db.mother.chatHistory = [{sender: 'ai', text: 'History reset. How can I help you, Elena?', time: 'Just Now'}]; renderChatHistory();" class="text-[10px] text-muted-sage hover:text-serene-white flex items-center gap-0.5">
+                        <span class="material-symbols-outlined text-sm">restart_alt</span>
+                        Reset
+                    </button>
+                </header>
+
+                <!-- Disclaimer Banner -->
+                <div class="bg-warning-amber/15 border-b border-warning-amber/20 px-4 py-2 flex items-start gap-2.5 text-[9px] text-warning-amber leading-relaxed">
+                    <span class="material-symbols-outlined text-sm mt-0.5">info</span>
+                    <span><strong>Disclaimer:</strong> Bloom AI provides clinical educational insights. All medical treatment decisions must be reviewed and decided by your primary care OB/GYN doctor.</span>
+                </div>
+
+                <!-- Chat Messages Scroll Container -->
+                <div id="chat-bubbles-container" class="flex-1 overflow-y-auto p-4 space-y-4 flex flex-col no-scrollbar min-h-[300px]">
+                    <!-- Chat bubbles injected via renderChatHistory() -->
+                </div>
+
+                <!-- Voice soundwaves indicator (only displays during mock microphone recording) -->
+                <div id="voice-soundwave-indicator" class="hidden glass-card mx-4 p-3 rounded-xl border-maternity-mint/30 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-maternity-mint animate-pulse">mic</span>
+                        <span class="text-[10px] text-muted-sage">Listening for voice inputs...</span>
+                    </div>
+                    <div class="flex gap-1 items-end h-6">
+                        <div class="w-1 bg-maternity-mint rounded wave-bar" style="height: 10px"></div>
+                        <div class="w-1 bg-maternity-mint rounded wave-bar" style="height: 24px"></div>
+                        <div class="w-1 bg-maternity-mint rounded wave-bar" style="height: 15px"></div>
+                        <div class="w-1 bg-maternity-mint rounded wave-bar" style="height: 28px"></div>
+                        <div class="w-1 bg-maternity-mint rounded wave-bar" style="height: 8px"></div>
+                    </div>
+                </div>
+
+                <!-- Input Footer Box -->
+                <div class="p-4 border-t border-white/5 bg-background-dark/95 sticky bottom-0">
+                    <div class="flex gap-2">
+                        <div class="relative flex-1">
+                            <input id="chat-input-text" type="text" placeholder="Ask about pregnancy symptoms, foods, etc..." class="w-full bg-white/5 border border-white/10 rounded-full px-4 py-2.5 pr-10 text-xs text-serene-white placeholder-muted-sage focus:outline-none focus:border-maternity-mint focus:ring-0" onkeydown="if(event.key === 'Enter') sendChatMessage()"/>
+                            <button onclick="toggleVoiceInput()" class="absolute right-3 top-1/2 -translate-y-1/2 text-muted-sage hover:text-maternity-mint">
+                                <span id="mic-icon" class="material-symbols-outlined text-lg">mic</span>
+                            </button>
+                        </div>
+                        <button onclick="sendChatMessage()" class="w-10 h-10 rounded-full bg-maternity-mint text-deep-charcoal flex items-center justify-center hover:scale-105 active:scale-95 transition">
+                            <span class="material-symbols-outlined text-lg">send</span>
+                        </button>
+                    </div>
+                    <div class="flex gap-2 mt-3 overflow-x-auto no-scrollbar pb-1">
+                        <button onclick="askQuickQuestion('Can I drink chamomile tea?')" class="text-[9px] px-3 py-1.5 rounded-full bg-white/5 border border-white/5 hover:bg-white/10 text-serene-white whitespace-nowrap">
+                            🍵 Chamomile tea safe?
+                        </button>
+                        <button onclick="askQuickQuestion('How can I ease lower back pain?')" class="text-[9px] px-3 py-1.5 rounded-full bg-white/5 border border-white/5 hover:bg-white/10 text-serene-white whitespace-nowrap">
+                            ⚡ Lower back pain relief?
+                        </button>
+                        <button onclick="askQuickQuestion('What foods contain gestational folic acid?')" class="text-[9px] px-3 py-1.5 rounded-full bg-white/5 border border-white/5 hover:bg-white/10 text-serene-white whitespace-nowrap">
+                            🥗 Folic acid foods?
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        let voiceActive = false;
+        function toggleVoiceInput() {
+            voiceActive = !voiceActive;
+            const wave = document.getElementById("voice-soundwave-indicator");
+            const mic = document.getElementById("mic-icon");
+            if (voiceActive) {
+                wave.classList.remove("hidden");
+                mic.innerText = "graphic_eq";
+                mic.classList.add("text-maternity-mint");
+                logAction("Voice capture mode activated. Listening for speech input...");
+                // Simulate typing speech results
+                setTimeout(() => {
+                    if(voiceActive) {
+                        const input = document.getElementById("chat-input-text");
+                        if (input) input.value = "How to improve my sleep score during my second trimester?";
+                        toggleVoiceInput(); // Turn off
+                    }
+                }, 3000);
+            } else {
+                wave.classList.add("hidden");
+                mic.innerText = "mic";
+                mic.classList.remove("text-maternity-mint");
+                logAction("Voice capture deactivated.");
+            }
+        }
+
+        function renderMotherReports() {
+            const reportHistory = db.mother.reports.map(rep => `
+                <div onclick="switchSubPage('report-detail')" class="p-3.5 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition cursor-pointer flex justify-between items-center">
+                    <div class="space-y-1">
+                        <h4 class="text-xs font-bold text-serene-white">${rep.name}</h4>
+                        <p class="text-[10px] text-muted-sage">${rep.date} • ${rep.type}</p>
+                    </div>
+                    <span class="material-symbols-outlined text-muted-sage">chevron_right</span>
+                </div>
+            `).join("");
+
+            return `
+                <header class="sticky top-0 bg-background-dark/90 backdrop-blur-md border-b border-white/5 flex items-center justify-between px-5 py-3 z-50">
+                    <div>
+                        <h1 class="text-xs font-bold text-serene-white">Medical Report Analysis</h1>
+                        <p class="text-[9px] text-muted-sage">AI OCR Diagnostics</p>
+                    </div>
+                </header>
+
+                <div class="p-5 space-y-6">
+                    <!-- Scan Upload Widget -->
+                    <div class="glass-card rounded-2xl border-dashed border-maternity-mint/30 p-6 flex flex-col items-center justify-center text-center space-y-3 bg-maternity-mint/5 hover:bg-maternity-mint/10 transition duration-300">
+                        <div class="w-12 h-12 rounded-full bg-maternity-mint/10 text-maternity-mint flex items-center justify-center">
+                            <span class="material-symbols-outlined text-[28px]">cloud_upload</span>
+                        </div>
+                        <div class="space-y-1">
+                            <h4 class="text-xs font-bold text-serene-white">Upload New Lab Report</h4>
+                            <p class="text-[9px] text-muted-sage">Supports PDFs, Blood Panels, or Scan Images</p>
+                        </div>
+                        <button onclick="startReportScan()" class="text-xs px-4 py-2 bg-maternity-mint text-deep-charcoal font-bold rounded-full transition active:scale-95">
+                            Select File & Analyze
+                        </button>
+                    </div>
+
+                    <!-- History List -->
+                    <div class="space-y-3">
+                        <h3 class="text-xs font-bold text-serene-white uppercase tracking-wider">Report History</h3>
+                        <div class="space-y-2.5">
+                            ${reportHistory}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderReportScanScreen() {
+            return `
+                <div class="flex-1 flex flex-col items-center justify-center p-6 text-center space-y-6">
+                    <div class="w-56 h-72 rounded-xl bg-white/5 border border-white/10 relative overflow-hidden flex flex-col items-center justify-center p-4">
+                        <!-- Hologram Medical Report Mockup -->
+                        <div class="w-full space-y-3 opacity-30 text-left font-mono text-[6px]">
+                            <div class="h-2 bg-serene-white rounded w-2/3"></div>
+                            <div class="h-2 bg-serene-white rounded w-1/2"></div>
+                            <hr class="border-white/10 my-2"/>
+                            <div class="flex justify-between"><div class="h-1.5 bg-serene-white rounded w-1/4"></div><div class="h-1.5 bg-serene-white rounded w-1/6"></div></div>
+                            <div class="flex justify-between"><div class="h-1.5 bg-serene-white rounded w-1/3"></div><div class="h-1.5 bg-serene-white rounded w-1/6"></div></div>
+                            <div class="flex justify-between"><div class="h-1.5 bg-serene-white rounded w-1/4"></div><div class="h-1.5 bg-serene-white rounded w-1/6"></div></div>
+                            <div class="flex justify-between"><div class="h-1.5 bg-serene-white rounded w-1/2"></div><div class="h-1.5 bg-serene-white rounded w-1/6"></div></div>
+                        </div>
+
+                        <!-- Scan Laser bar -->
+                        <div class="absolute left-0 right-0 h-0.5 bg-maternity-mint/80 shadow-[0_0_10px_2px_rgba(122,226,184,0.6)] scan-laser"></div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h3 class="text-sm font-bold text-serene-white">Processing Document...</h3>
+                        <p id="scan-status-text" class="text-xs text-maternity-mint animate-pulse">Scanning Report Details...</p>
+                        <p class="text-[10px] text-muted-sage">OCR system parses and evaluates markers using certified guides.</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderReportDetailScreen() {
+            return `
+                <header class="sticky top-0 bg-background-dark/90 backdrop-blur-md border-b border-white/5 flex items-center justify-between px-5 py-3 z-50">
+                    <div class="flex items-center gap-2">
+                        <button onclick="switchTab('reports')" class="text-muted-sage hover:text-serene-white">
+                            <span class="material-symbols-outlined text-lg">arrow_back</span>
+                        </button>
+                        <h1 class="text-xs font-bold text-serene-white">OCR Diagnostics Panel</h1>
+                    </div>
+                </header>
+
+                <div class="p-5 space-y-6">
+                    <!-- Report Header -->
+                    <div class="space-y-1">
+                        <span class="text-[9px] uppercase font-bold px-2 py-0.5 rounded bg-warning-amber/10 text-warning-amber">Action Recommended</span>
+                        <h2 class="text-sm font-bold text-serene-white">Routine Second Trimester CBC Panel</h2>
+                        <p class="text-[10px] text-muted-sage">Scanned: Today • Verified by Bloom AI</p>
+                    </div>
+
+                    <!-- Medical Values -->
+                    <div class="space-y-3">
+                        <h3 class="text-xs font-bold text-serene-white uppercase tracking-wider">Extracted Lab Values</h3>
+                        
+                        <div class="space-y-2.5">
+                            <!-- Low Hemoglobin -->
+                            <div class="p-3.5 rounded-xl bg-white/5 border border-red-500/20 space-y-1">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xs font-bold text-serene-white">Hemoglobin</span>
+                                    <span class="text-[9px] font-bold px-2 py-0.5 rounded bg-red-500/10 text-critical-rose uppercase">11.2 g/dL (Low)</span>
+                                </div>
+                                <p class="text-[9px] text-muted-sage">Healthy range for Week 24: 12.0 - 15.0 g/dL</p>
+                            </div>
+
+                            <!-- Fasting Glucose -->
+                            <div class="p-3.5 rounded-xl bg-white/5 border border-white/5 space-y-1">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xs font-bold text-serene-white">Blood Glucose (Fasting)</span>
+                                    <span class="text-[9px] font-bold px-2 py-0.5 rounded bg-maternity-mint/10 text-maternity-mint uppercase">92 mg/dL (Normal)</span>
+                                </div>
+                                <p class="text-[9px] text-muted-sage">Healthy range: < 95 mg/dL</p>
+                            </div>
+
+                            <!-- TSH -->
+                            <div class="p-3.5 rounded-xl bg-white/5 border border-white/5 space-y-1">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xs font-bold text-serene-white">Thyroid Stimulating Hormone (TSH)</span>
+                                    <span class="text-[9px] font-bold px-2 py-0.5 rounded bg-maternity-mint/10 text-maternity-mint uppercase">2.1 mIU/L (Normal)</span>
+                                </div>
+                                <p class="text-[9px] text-muted-sage">Healthy range: 0.2 - 2.5 mIU/L</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI Explanation Card -->
+                    <div class="glass-card p-4 rounded-2xl border-maternity-mint/10 bg-gradient-to-br from-maternity-mint/5 to-transparent space-y-3">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-maternity-mint text-lg">smart_toy</span>
+                            <h4 class="text-xs font-bold text-serene-white">Bloom AI Clinical Breakdown</h4>
+                        </div>
+                        <p class="text-[10px] text-serene-white leading-relaxed">
+                            Your hemoglobin of <strong>11.2 g/dL</strong> is slightly below the target for pregnancy. This is often caused by the increased blood volume (hemodilution) common in week 24.
+                        </p>
+                        <div class="p-3 rounded-xl bg-deep-charcoal border border-white/5 space-y-2">
+                            <span class="text-[9px] font-bold text-maternity-mint uppercase tracking-wider block">Recommended Actions</span>
+                            <ul class="text-[9px] text-muted-sage space-y-1 list-disc pl-4">
+                                <li>Ensure you take your prescribed <strong>Iron Supplement (200mg)</strong> with Vitamin C.</li>
+                                <li>Focus on iron-rich foods (spinach, lentils, lean beef).</li>
+                                <li>Follow up with Dr. Sarah Jenkins at your appointment today at 2:00 PM.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        const doctorsList = [
+            { id: 1, name: "Dr. Sarah Jenkins", specialty: "Obstetrician & Gynecologist", rating: 4.9, experience: 12, bio: "Expert in high-risk pregnancy management and personalized prenatal counseling. Dedicated to supporting mothers throughout their maternity journey.", image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=120&h=120&fit=crop" },
+            { id: 2, name: "Dr. Aris Thorne", specialty: "Fetal Medicine Specialist", rating: 4.8, experience: 15, bio: "Specialized in fetal imaging, prenatal diagnosis, and maternal-fetal medicine. Over 15 years of surgical and clinical expertise.", image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=120&h=120&fit=crop" },
+            { id: 3, name: "Dr. Maya Lin", specialty: "Prenatal Nutritionist", rating: 4.7, experience: 8, bio: "Guiding expectant mothers through healthy gestational diets, addressing nausea, glucose tolerance, and dietary patterns.", image: "https://images.unsplash.com/photo-1594824813573-246434de83fb?w=120&h=120&fit=crop" }
+        ];
+
+        function renderMotherDoctors() {
+            let activeDoctorView = `
+                <div class="p-4 space-y-4">
+                    <!-- Search & filter -->
+                    <div class="relative">
+                        <input type="text" placeholder="Search doctors, specialities..." class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 pl-10 text-xs text-serene-white placeholder-muted-sage focus:outline-none focus:border-maternity-mint"/>
+                        <span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-lg text-muted-sage">search</span>
+                    </div>
+
+                    <div class="flex gap-2 text-[10px]">
+                        <span class="px-3 py-1.5 rounded-full bg-maternity-mint/15 text-maternity-mint font-semibold">All</span>
+                        <span class="px-3 py-1.5 rounded-full bg-white/5 text-muted-sage hover:text-serene-white">OB/GYN</span>
+                        <span class="px-3 py-1.5 rounded-full bg-white/5 text-muted-sage hover:text-serene-white">Fetal Specialist</span>
+                    </div>
+
+                    <!-- Doctor Cards -->
+                    <div class="space-y-3.5">
+                        ${doctorsList.map(doc => `
+                            <div class="glass-card p-4 rounded-2xl flex gap-3">
+                                <div class="w-16 h-16 rounded-xl overflow-hidden bg-white/5 shrink-0 border border-white/10">
+                                    <img class="w-full h-full object-cover" src="${doc.image}" alt="${doc.name}"/>
+                                </div>
+                                <div class="flex-1 space-y-1">
+                                    <h4 class="text-xs font-bold text-serene-white">${doc.name}</h4>
+                                    <p class="text-[10px] text-muted-sage">${doc.specialty}</p>
+                                    <div class="flex items-center gap-3 pt-1">
+                                        <span class="text-[9px] text-maternity-mint flex items-center gap-0.5">
+                                            <span class="material-symbols-outlined text-xs fill-1">star</span>
+                                            ${doc.rating}
+                                        </span>
+                                        <span class="text-[9px] text-muted-sage">${doc.experience} Years Exp</span>
+                                    </div>
+                                    <div class="flex gap-2 pt-2">
+                                        <button onclick="viewDoctorDetails(${doc.id})" class="text-[10px] font-bold px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 hover:bg-white/10 text-serene-white">
+                                            Profile
+                                        </button>
+                                        <button onclick="selectedDoctor = doctorsList.find(d=>d.id===${doc.id}); switchSubPage('booking-page')" class="text-[10px] font-bold px-3 py-1.5 rounded-lg bg-maternity-mint text-deep-charcoal">
+                                            Book Appointment
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        `).join("")}
+                    </div>
+                </div>
+            `;
+
+            if (selectedDoctor && !currentSubPage) {
+                // Doctor Profile Subpage View
+                activeDoctorView = `
+                    <div class="space-y-4">
+                        <header class="bg-background-dark/90 border-b border-white/5 p-4 flex items-center gap-2">
+                            <button onclick="selectedDoctor=null; renderViewport()" class="text-muted-sage hover:text-serene-white">
+                                <span class="material-symbols-outlined text-lg">arrow_back</span>
+                            </button>
+                            <h2 class="text-xs font-bold text-serene-white">Doctor Profile</h2>
+                        </header>
+
+                        <div class="p-5 space-y-6">
+                            <div class="flex gap-4">
+                                <div class="w-20 h-20 rounded-2xl overflow-hidden border border-maternity-mint/20">
+                                    <img class="w-full h-full object-cover" src="${selectedDoctor.image}" alt="${selectedDoctor.name}"/>
+                                </div>
+                                <div class="space-y-1">
+                                    <h3 class="text-sm font-bold text-serene-white">${selectedDoctor.name}</h3>
+                                    <p class="text-xs text-maternity-mint font-semibold">${selectedDoctor.specialty}</p>
+                                    <p class="text-[10px] text-muted-sage">${selectedDoctor.hospital}</p>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-3 gap-2 text-center">
+                                <div class="p-3 bg-white/5 rounded-xl border border-white/5">
+                                    <p class="text-xs font-extrabold text-serene-white">${selectedDoctor.experience} yrs</p>
+                                    <p class="text-[9px] text-muted-sage mt-0.5">Experience</p>
+                                </div>
+                                <div class="p-3 bg-white/5 rounded-xl border border-white/5">
+                                    <p class="text-xs font-extrabold text-maternity-mint flex items-center justify-center gap-0.5">
+                                        <span class="material-symbols-outlined text-xs fill-1">star</span>
+                                        ${selectedDoctor.rating}
+                                    </p>
+                                    <p class="text-[9px] text-muted-sage mt-0.5">Rating</p>
+                                </div>
+                                <div class="p-3 bg-white/5 rounded-xl border border-white/5">
+                                    <p class="text-xs font-extrabold text-serene-white">450+</p>
+                                    <p class="text-[9px] text-muted-sage mt-0.5">Deliveries</p>
+                                </div>
+                            </div>
+
+                            <div class="space-y-2">
+                                <h4 class="text-xs font-bold text-serene-white uppercase">Biography</h4>
+                                <p class="text-xs text-muted-sage leading-relaxed">${selectedDoctor.bio}</p>
+                            </div>
+
+                            <div class="space-y-3">
+                                <h4 class="text-xs font-bold text-serene-white uppercase">Prescription Archives</h4>
+                                <div class="space-y-2.5">
+                                    ${db.mother.prescriptions.filter(p => p.doctor === selectedDoctor.name).map(pr => `
+                                        <div class="p-3 rounded-xl bg-white/5 border border-white/5 space-y-1">
+                                            <div class="flex justify-between items-center">
+                                                <span class="text-xs font-bold text-serene-white">${pr.drug}</span>
+                                                <span class="text-[9px] text-muted-sage">${pr.date}</span>
+                                            </div>
+                                            <p class="text-[9px] text-muted-sage leading-relaxed">${pr.directions}</p>
+                                        </div>
+                                    `).join("")}
+                                </div>
+                            </div>
+
+                            <button onclick="switchSubPage('booking-page')" class="w-full py-3.5 bg-maternity-mint text-deep-charcoal font-bold rounded-full text-xs shadow-lg transition active:scale-95">
+                                Book Video Appointment
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            return `
+                <header class="sticky top-0 bg-background-dark/90 backdrop-blur-md border-b border-white/5 flex items-center justify-between px-5 py-3 z-50">
+                    <div>
+                        <h1 class="text-xs font-bold text-serene-white">Doctor Consultations</h1>
+                        <p class="text-[9px] text-muted-sage">Assists Decisions</p>
+                    </div>
+                </header>
+                ${activeDoctorView}
+            `;
+        }
+
+        function viewDoctorDetails(id) {
+            selectedDoctor = doctorsList.find(d => d.id === id);
+            renderViewport();
+        }
+
+        function renderBookingScreen() {
+            return `
+                <header class="bg-background-dark border-b border-white/5 p-4 flex items-center gap-2">
+                    <button onclick="switchTab('doctors')" class="text-muted-sage hover:text-serene-white">
+                        <span class="material-symbols-outlined text-lg">arrow_back</span>
+                    </button>
+                    <h2 class="text-xs font-bold text-serene-white">Select Appointment Date</h2>
+                </header>
+
+                <div class="p-5 space-y-6">
+                    <div class="flex gap-3">
+                        <img class="w-12 h-12 rounded-xl object-cover" src="${selectedDoctor.image}"/>
+                        <div>
+                            <h3 class="text-xs font-bold text-serene-white">Booking with ${selectedDoctor.name}</h3>
+                            <p class="text-[10px] text-maternity-mint">${selectedDoctor.specialty}</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="space-y-1">
+                            <label class="text-[9px] font-bold text-muted-sage uppercase tracking-wider block">Choose Date</label>
+                            <input type="date" id="booking-date" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-serene-white focus:border-maternity-mint focus:outline-none"/>
+                        </div>
+
+                        <div class="space-y-1">
+                            <label class="text-[9px] font-bold text-muted-sage uppercase tracking-wider block">Choose Time</label>
+                            <select id="booking-time" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-serene-white focus:border-maternity-mint focus:outline-none">
+                                <option value="">Select availability slot...</option>
+                                <option value="09:00 AM">09:00 AM (Available)</option>
+                                <option value="11:30 AM">11:30 AM (Available)</option>
+                                <option value="02:00 PM">02:00 PM (Available)</option>
+                                <option value="04:30 PM">04:30 PM (Available)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button onclick="bookDoctorAppointment()" class="w-full py-3.5 bg-maternity-mint text-deep-charcoal font-bold rounded-full text-xs transition active:scale-95 shadow-lg">
+                        Confirm Appointment Booking
+                    </button>
+                </div>
+            `;
+        }
+
+        function renderWaitingRoomScreen() {
+            // Video consultation screen simulator
+            return `
+                <div class="flex-1 flex flex-col justify-between bg-black text-white p-5 h-full min-h-[500px]">
+                    <header class="flex justify-between items-center">
+                        <div class="flex items-center gap-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></span>
+                            <span class="text-[10px] uppercase font-bold tracking-wider">Live Video Call</span>
+                        </div>
+                        <button onclick="switchTab('home')" class="text-xs text-muted-sage hover:text-white">Exit</button>
+                    </header>
+
+                    <!-- Video Grid Mockup -->
+                    <div class="flex-1 flex flex-col gap-4 my-4 relative justify-center items-center">
+                        <!-- Main Frame representing Doctor's webcam -->
+                        <div id="doctor-cam-placeholder" class="w-full h-full rounded-2xl overflow-hidden bg-zinc-900 border border-white/10 flex flex-col justify-center items-center text-center p-6 relative">
+                            <img id="doctor-webcam-feed" class="w-full h-full object-cover absolute inset-0 opacity-40" src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&h=600&fit=crop"/>
+                            
+                            <div class="z-10 space-y-2">
+                                <span class="material-symbols-outlined text-[48px] text-maternity-mint animate-pulse">contact_emergency</span>
+                                <h3 class="text-sm font-bold">Connecting video stream...</h3>
+                                <p class="text-xs text-muted-sage">Dr. Sarah Jenkins is preparing to join</p>
+                            </div>
+                        </div>
+
+                        <!-- Small Frame representing Mother's self view camera -->
+                        <div class="absolute bottom-3 right-3 w-28 h-36 rounded-xl overflow-hidden bg-zinc-800 border border-white/20">
+                            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=300&fit=crop"/>
+                        </div>
+                    </div>
+
+                    <!-- Call Control bar -->
+                    <div class="flex justify-around items-center bg-zinc-900/90 py-3 px-6 rounded-2xl border border-white/5">
+                        <button class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20">
+                            <span class="material-symbols-outlined text-lg">mic</span>
+                        </button>
+                        <button class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20">
+                            <span class="material-symbols-outlined text-lg">videocam</span>
+                        </button>
+                        <button onclick="switchTab('home')" class="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center text-white hover:bg-red-700">
+                            <span class="material-symbols-outlined text-xl">call_end</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderMotherProfile() {
+            return `
+                <header class="sticky top-0 bg-background-dark/90 backdrop-blur-md border-b border-white/5 flex items-center justify-between px-5 py-3 z-50">
+                    <div>
+                        <h1 class="text-xs font-bold text-serene-white">Settings & Profile</h1>
+                        <p class="text-[9px] text-muted-sage">Privacy Controls</p>
+                    </div>
+                </header>
+
+                <div class="p-5 space-y-6">
+                    <!-- Identity card -->
+                    <div class="glass-card p-4 rounded-2xl flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full border border-maternity-mint/30 overflow-hidden">
+                            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop" alt="Elena Avatar"/>
+                        </div>
+                        <div>
+                            <h3 class="text-xs font-bold text-serene-white">${db.mother.name}</h3>
+                            <p class="text-[10px] text-muted-sage">Age 29 • 24 Weeks Pregnant</p>
+                        </div>
+                    </div>
+
+                    <!-- Clinical info -->
+                    <div class="space-y-2">
+                        <h3 class="text-xs font-bold text-serene-white uppercase tracking-wider">Pregnancy Information</h3>
+                        <div class="bg-white/5 rounded-xl border border-white/5 p-3 space-y-2.5 text-xs text-serene-white">
+                            <div class="flex justify-between border-b border-white/5 pb-2">
+                                <span class="text-muted-sage text-[11px]">Due Date:</span>
+                                <span>${db.mother.dueDate} (${db.mother.daysToGo} days)</span>
+                            </div>
+                            <div class="flex justify-between border-b border-white/5 pb-2">
+                                <span class="text-muted-sage text-[11px]">Last Menstrual Period:</span>
+                                <span>Jan 05, 2026</span>
+                            </div>
+                            <div class="flex justify-between border-b border-white/5 pb-2">
+                                <span class="text-muted-sage text-[11px]">Blood Type:</span>
+                                <span>A Rh-positive</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-muted-sage text-[11px]">Allergies:</span>
+                                <span>Penicillin</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Emergency contacts -->
+                    <div class="space-y-2">
+                        <h3 class="text-xs font-bold text-serene-white uppercase tracking-wider">Emergency Contacts</h3>
+                        <div class="space-y-2">
+                            <div class="p-3 bg-white/5 border border-white/5 rounded-xl flex justify-between items-center">
+                                <div>
+                                    <p class="text-xs font-bold text-serene-white">Mark Rostov (Husband)</p>
+                                    <p class="text-[9px] text-muted-sage">Companion Role Connected</p>
+                                </div>
+                                <a href="tel:+15550199" class="w-8 h-8 rounded-full bg-maternity-mint/10 flex items-center justify-center text-maternity-mint">
+                                    <span class="material-symbols-outlined text-sm">phone</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Privacy checklist -->
+                    <div class="space-y-2">
+                        <h3 class="text-xs font-bold text-serene-white uppercase tracking-wider">Privacy & HIPAA Security</h3>
+                        <div class="p-3 bg-white/5 border border-white/5 rounded-xl space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div class="space-y-0.5">
+                                    <p class="text-xs text-serene-white font-bold">Biometric Data Encryption</p>
+                                    <p class="text-[9px] text-muted-sage">All data is end-to-end encrypted</p>
+                                </div>
+                                <span class="material-symbols-outlined text-maternity-mint">lock</span>
+                            </div>
+                            <hr class="border-white/5"/>
+                            <div class="flex items-center justify-between">
+                                <div class="space-y-0.5">
+                                    <p class="text-xs text-serene-white font-bold">Share metrics with Doctor</p>
+                                    <p class="text-[9px] text-muted-sage">Sync vitals with Dr. Sarah Jenkins</p>
+                                </div>
+                                <span class="material-symbols-outlined text-maternity-mint">check_circle</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // ================= EMERGENCY SCREEN VIEW =================
+        function renderEmergencyScreen() {
+            return `
+                <header class="bg-critical-rose/10 border-b border-critical-rose/20 p-4 flex items-center gap-2">
+                    <button onclick="switchTab('home')" class="text-critical-rose hover:text-white">
+                        <span class="material-symbols-outlined text-lg">arrow_back</span>
+                    </button>
+                    <h2 class="text-xs font-bold text-critical-rose uppercase tracking-wider">Emergency Medical Assistance</h2>
+                </header>
+
+                <div class="p-5 space-y-6 flex-1 flex flex-col justify-between min-h-[500px]">
+                    <div class="space-y-4 text-center">
+                        <p class="text-[10px] text-critical-rose font-bold uppercase tracking-widest animate-pulse">Critical Emergency Mode</p>
+                        
+                        <!-- Pulsing SOS Center Button -->
+                        <div class="flex justify-center my-4">
+                            <button onclick="triggerNotification('alert')" class="w-36 h-36 rounded-full bg-critical-rose text-deep-charcoal shadow-2xl flex flex-col items-center justify-center font-bold transition hover:scale-105 active:scale-95 z-[70] maternity-glow-critical">
+                                <span class="material-symbols-outlined text-[48px] animate-ping">emergency</span>
+                                <span class="text-xs uppercase tracking-wider font-extrabold mt-1">PRESS SOS</span>
+                            </button>
+                        </div>
+                        <p class="text-[10px] text-muted-sage leading-relaxed">Pressing SOS broadcasts GPS location coordinates to your companion, doctor, and nearby emergency responder dispatch.</p>
+                    </div>
+
+                    <!-- Action buttons -->
+                    <div class="space-y-2.5">
+                        <a href="tel:911" class="w-full py-3.5 bg-critical-rose text-deep-charcoal font-bold rounded-full text-xs text-center block shadow-lg flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-sm">emergency_share</span>
+                            Call Local Emergency (911)
+                        </a>
+
+                        <a href="tel:+15550199" class="w-full py-3.5 bg-white/5 border border-white/10 hover:bg-white/10 text-serene-white font-bold rounded-full text-xs text-center block flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-sm">phone</span>
+                            Call Husband (Mark Rostov)
+                        </a>
+
+                        <button onclick="switchSubPage(null); switchTab('doctors'); viewDoctorDetails(1)" class="w-full py-3.5 bg-white/5 border border-white/10 hover:bg-white/10 text-serene-white font-bold rounded-full text-xs text-center block flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-sm">medical_services</span>
+                            Call Dr. Sarah Jenkins (OB/GYN)
+                        </button>
+                    </div>
+
+                    <!-- Critical Instructions Checklist -->
+                    <div class="p-4 bg-white/5 border border-white/5 rounded-2xl space-y-3 text-left">
+                        <h4 class="text-xs font-bold text-serene-white uppercase tracking-wider">Critical First-Aid Steps</h4>
+                        <div class="space-y-2 text-[10px] text-muted-sage leading-relaxed">
+                            <p><strong>1. Severe Bleeding or Fluid Leakage:</strong> Lie down flat, elevate hips, call emergency services immediately, do not insert anything vaginally.</p>
+                            <p><strong>2. Rhythmic Contractions:</strong> Sit down, calculate duration of intervals. If intervals are less than 5 minutes apart, prepare for transfer.</p>
+                            <p><strong>3. Vision Blur or Swelling:</strong> Sit quietly, avoid bright lights, avoid physical exertion.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 2. FAMILY COMPANION MODE PORTAL
+        function renderCompanionPortal() {
+            const notificationsList = [
+                { title: "Medication Scheduled", text: "Elena needs to take DHA Omega-3 at 8:00 PM.", time: "2 hours ago" },
+                { title: "Hydration Status: Low", text: "Elena has logged only 1.2L of water today.", time: "4 hours ago" },
+                { title: "Milestone Completed", text: "Elena logged kick counts metric successfully.", time: "6 hours ago" }
+            ].map(not => `
+                <div class="p-3 bg-white/5 rounded-xl border border-white/5 space-y-0.5">
+                    <p class="text-xs font-bold text-serene-white">${not.title}</p>
+                    <p class="text-[10px] text-muted-sage leading-relaxed">${not.text}</p>
+                    <p class="text-[9px] text-muted-sage mt-1">${not.time}</p>
+                </div>
+            `).join("");
+
+            return `
+                <header class="sticky top-0 bg-background-dark/90 backdrop-blur-md border-b border-white/5 flex items-center justify-between px-5 py-3 z-50">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-lavender-bloom text-xl">diversity_1</span>
+                        <div>
+                            <h1 class="text-xs font-bold text-serene-white">Companion Dashboard</h1>
+                            <p class="text-[9px] text-muted-sage">Connected: Elena (Mother)</p>
+                        </div>
+                    </div>
+                    <button onclick="generateNewInviteCode()" class="text-[9px] px-2.5 py-1 rounded bg-white/5 text-serene-white font-semibold">
+                        Regen Code
+                    </button>
+                </header>
+
+                <div class="p-5 space-y-6">
+                    <!-- Companion Identity Code -->
+                    <div class="p-4 bg-lavender-bloom/10 border border-lavender-bloom/20 rounded-2xl space-y-2 text-center">
+                        <p class="text-[9px] font-bold text-lavender-bloom uppercase tracking-wider">Your Companion Link Code</p>
+                        <p class="text-lg font-mono font-extrabold text-serene-white tracking-widest">${db.companion.code}</p>
+                        <p class="text-[9px] text-muted-sage leading-relaxed">Give this code to Elena to link companion accounts and receive emergency coordinates and calendar milestones.</p>
+                    </div>
+
+                    <!-- Mother's Daily Metrics Snapshot -->
+                    <div class="space-y-3">
+                        <h3 class="text-xs font-bold text-serene-white uppercase tracking-wider">Elena's Health Summary</h3>
+                        
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="p-3.5 bg-white/5 rounded-xl border border-white/5 space-y-2">
+                                <span class="material-symbols-outlined text-serene-blue text-sm">water_drop</span>
+                                <div class="space-y-0.5">
+                                    <p class="text-[9px] text-muted-sage uppercase">Hydration</p>
+                                    <p class="text-xs font-bold text-serene-white">${db.mother.waterLogged} ml</p>
+                                </div>
+                            </div>
+                            <div class="p-3.5 bg-white/5 rounded-xl border border-white/5 space-y-2">
+                                <span class="material-symbols-outlined text-maternity-mint text-sm">directions_walk</span>
+                                <div class="space-y-0.5">
+                                    <p class="text-[9px] text-muted-sage uppercase">Steps Today</p>
+                                    <p class="text-xs font-bold text-serene-white">${db.mother.stepsLogged}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Companion Reminders -->
+                    <div class="p-4 bg-white/5 border border-white/5 rounded-2xl space-y-3">
+                        <h4 class="text-xs font-bold text-serene-white uppercase">Send Wellness Reminder</h4>
+                        <div class="flex gap-2">
+                            <select id="companion-custom-reminder-select" class="flex-1 bg-deep-charcoal border border-white/10 rounded-xl px-3 py-2 text-xs text-serene-white focus:outline-none focus:border-maternity-mint">
+                                <option value="water">Drink Water</option>
+                                <option value="rest">Take a Nap & Rest</option>
+                                <option value="walk">Go for a Light Walk</option>
+                            </select>
+                            <button onclick="companionSendReminder()" class="px-4 py-2 bg-maternity-mint text-deep-charcoal font-bold rounded-xl text-xs transition active:scale-95">
+                                Push
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Activity feeds / history -->
+                    <div class="space-y-2.5">
+                        <h3 class="text-xs font-bold text-serene-white uppercase tracking-wider">Companion Alerts Log</h3>
+                        <div class="space-y-2.5">
+                            ${notificationsList}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 3. DOCTOR PORTAL VIEW
+        function renderDoctorPortal() {
+            const appointmentsListHtml = db.doctor.appointmentsRequests.map(req => `
+                <div class="p-3.5 bg-white/5 border border-white/5 rounded-xl space-y-2">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-xs font-bold text-serene-white">${req.patient}</p>
+                            <p class="text-[9px] text-muted-sage mt-0.5">${req.urgency} • Video Call request</p>
+                        </div>
+                        <span class="text-[9px] font-bold text-maternity-mint bg-maternity-mint/10 px-2 py-0.5 rounded">${req.time}</span>
+                    </div>
+                    <div class="flex gap-2 justify-end pt-1">
+                        <button onclick="doctorApproveAppointment(${req.id})" class="text-[10px] font-bold px-3 py-1.5 rounded bg-maternity-mint text-deep-charcoal">
+                            Accept Call
+                        </button>
+                        <button onclick="db.doctor.appointmentsRequests = db.doctor.appointmentsRequests.filter(r=>r.id!==${req.id}); renderViewport(); logAction('Doctor rejected request.');" class="text-[10px] font-bold px-3 py-1.5 rounded bg-white/5 text-muted-sage hover:text-white">
+                            Reschedule
+                        </button>
+                    </div>
+                </div>
+            `).join("");
+
+            return `
+                <header class="sticky top-0 bg-background-dark/90 backdrop-blur-md border-b border-white/5 flex items-center justify-between px-5 py-3 z-50">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-serene-blue text-xl">medical_services</span>
+                        <div>
+                            <h1 class="text-xs font-bold text-serene-white">Doctor Portal Dashboard</h1>
+                            <p class="text-[9px] text-muted-sage">${db.doctor.name} OB/GYN</p>
+                        </div>
+                    </div>
+                    <span class="text-[9px] uppercase font-bold px-2 py-0.5 rounded bg-serene-blue/15 text-serene-blue">Portal Mode</span>
+                </header>
+
+                <div class="p-5 space-y-6">
+                    <!-- Doctor Stats -->
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="p-3 bg-white/5 border border-white/5 rounded-xl text-center">
+                            <h4 class="text-lg font-extrabold text-serene-white">2</h4>
+                            <p class="text-[9px] text-muted-sage mt-0.5">Appointments Today</p>
+                        </div>
+                        <div class="p-3 bg-white/5 border border-white/5 rounded-xl text-center">
+                            <h4 class="text-lg font-extrabold text-maternity-mint">1</h4>
+                            <p class="text-[9px] text-muted-sage mt-0.5">Reports to Review</p>
+                        </div>
+                    </div>
+
+                    <!-- Appointment requests -->
+                    <div class="space-y-3">
+                        <h3 class="text-xs font-bold text-serene-white uppercase tracking-wider">Patient Call Requests</h3>
+                        <div class="space-y-2.5">
+                            ${appointmentsListHtml}
+                        </div>
+                    </div>
+
+                    <!-- Patient Medical Report Viewer -->
+                    <div class="space-y-2">
+                        <h3 class="text-xs font-bold text-serene-white uppercase tracking-wider">Patient Report Uploads</h3>
+                        
+                        <div onclick="switchSubPage('report-detail')" class="p-3.5 bg-white/5 border border-white/5 hover:bg-white/10 transition cursor-pointer rounded-xl flex justify-between items-center">
+                            <div class="space-y-0.5">
+                                <p class="text-xs font-bold text-serene-white">Elena Rostova: Second Trimester CBC</p>
+                                <p class="text-[9px] text-critical-rose font-bold">1 Alert Flagged (Hemoglobin 11.2)</p>
+                            </div>
+                            <span class="material-symbols-outlined text-muted-sage">chevron_right</span>
+                        </div>
+                    </div>
+
+                    <!-- Upload new prescription -->
+                    <div class="p-4 bg-white/5 border border-white/5 rounded-2xl space-y-3 text-left">
+                        <h4 class="text-xs font-bold text-serene-white uppercase">Upload Digital Prescription</h4>
+                        
+                        <div class="space-y-2.5">
+                            <div class="space-y-0.5">
+                                <label class="text-[9px] font-bold text-muted-sage uppercase">Medication Name</label>
+                                <input id="dr-presc-drug" type="text" placeholder="e.g. Calcium Citrate" class="w-full bg-deep-charcoal border border-white/10 rounded-xl px-3 py-2 text-xs text-serene-white focus:outline-none focus:border-maternity-mint"/>
+                            </div>
+
+                            <div class="space-y-0.5">
+                                <label class="text-[9px] font-bold text-muted-sage uppercase">Dosage & Frequency</label>
+                                <input id="dr-presc-dose" type="text" placeholder="e.g. 500mg, twice daily" class="w-full bg-deep-charcoal border border-white/10 rounded-xl px-3 py-2 text-xs text-serene-white focus:outline-none focus:border-maternity-mint"/>
+                            </div>
+
+                            <div class="space-y-0.5">
+                                <label class="text-[9px] font-bold text-muted-sage uppercase">Instructions</label>
+                                <textarea id="dr-presc-instructions" placeholder="Take with meals. Avoid high caffeine ingestion close to dose." class="w-full bg-deep-charcoal border border-white/10 rounded-xl px-3 py-2 text-xs text-serene-white focus:outline-none focus:border-maternity-mint h-14 resize-none"></textarea>
+                            </div>
+
+                            <button onclick="doctorUploadPrescription()" class="w-full py-2 bg-maternity-mint text-deep-charcoal font-bold rounded-xl text-xs transition active:scale-95">
+                                Upload & Sync Patient Chart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initialize state on render
+        window.addEventListener('load', () => {
+            renderViewport();
+            logAction("Prototype fully loaded.");
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bloom - Nurtured Intelligence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#131411",
+                    "secondary-container": "#5f3c4d",
+                    "surface-variant": "#353532",
+                    "primary": "#97ffd3",
+                    "on-error-container": "#ffdad6",
+                    "inverse-on-surface": "#31302d",
+                    "inverse-surface": "#e5e2dd",
+                    "inverse-primary": "#006c4e",
+                    "on-tertiary-container": "#56585a",
+                    "surface-container-high": "#2a2a27",
+                    "warning-amber": "#EF9F27",
+                    "critical-rose": "#E24B4A",
+                    "deep-charcoal": "#0C0E10",
+                    "primary-fixed-dim": "#72dab0",
+                    "surface-tint": "#72dab0",
+                    "error-container": "#93000a",
+                    "on-primary": "#003827",
+                    "muted-sage": "#9E9B96",
+                    "surface": "#131411",
+                    "on-primary-fixed": "#002115",
+                    "error": "#ffb4ab",
+                    "on-surface-variant": "#bdcac1",
+                    "maternity-mint": "#7AE2B8",
+                    "tertiary": "#eaeaed",
+                    "outline": "#87948c",
+                    "tertiary-fixed-dim": "#c6c6c9",
+                    "on-background": "#e5e2dd",
+                    "surface-container-lowest": "#0e0e0c",
+                    "on-secondary-fixed-variant": "#5f3c4d",
+                    "on-secondary-fixed": "#2e1221",
+                    "outline-variant": "#3e4943",
+                    "soft-blush": "#F8C8DC",
+                    "surface-container": "#20201d",
+                    "serene-white": "#F0EDE8",
+                    "surface-container-low": "#1c1c19",
+                    "surface-dim": "#131411",
+                    "on-error": "#690005",
+                    "on-tertiary-fixed-variant": "#454749",
+                    "on-primary-container": "#006449",
+                    "secondary": "#e9bacd",
+                    "secondary-fixed-dim": "#e9bacd",
+                    "on-secondary": "#462736",
+                    "secondary-fixed": "#ffd8e7",
+                    "surface-container-highest": "#353532",
+                    "primary-container": "#7ae2b8",
+                    "on-primary-fixed-variant": "#00513a",
+                    "tertiary-fixed": "#e2e2e5",
+                    "tertiary-container": "#ceced1",
+                    "on-secondary-container": "#d6a9bc",
+                    "on-tertiary": "#2f3133",
+                    "on-surface": "#e5e2dd",
+                    "primary-fixed": "#8ef6cb",
+                    "on-tertiary-fixed": "#1a1c1e",
+                    "surface-bright": "#3a3936"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "component-gap": "16px",
+                    "container-padding": "32px",
+                    "grid-gutter": "20px",
+                    "section-gap-md": "48px",
+                    "section-gap-lg": "80px",
+                    "stack-tight": "4px"
+            },
+            "fontFamily": {
+                    "body-md": ["Hanken Grotesk"],
+                    "display-lg": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "display-lg-mobile": ["Hanken Grotesk"],
+                    "label-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "title-lg": ["Hanken Grotesk"],
+                    "eyebrow": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "body-md": ["15px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "display-lg": ["52px", {"lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "500"}],
+                    "headline-md": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                    "display-lg-mobile": ["34px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                    "label-md": ["13px", {"lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "body-lg": ["17px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "title-lg": ["20px", {"lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                    "eyebrow": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #131411;
+            color: #e5e2dd;
+            font-family: 'Hanken Grotesk', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: rgba(32, 32, 29, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 0.5px solid rgba(240, 237, 232, 0.1);
+        }
+
+        .maternity-glow {
+            box-shadow: 0 0 60px 10px rgba(122, 226, 184, 0.08);
+        }
+
+        .progress-gradient {
+            background: linear-gradient(90deg, #F8C8DC 0%, #7AE2B8 100%);
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="dark min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-white/10 flex justify-between items-center px-container-padding py-base w-full">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-maternity-mint/30 active:scale-95 transition-transform duration-200">
+<img class="w-full h-full object-cover" data-alt="A high-end studio portrait of a glowing pregnant woman with soft lighting and a minimalist aesthetic. The background is a deep charcoal, and the woman has a serene expression, reflecting the premium dark theme and 'nurtured intelligence' brand identity of Bloom." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSPIMOcXqGu9EKrO4x2HFnUPHP0eFbPN6O610v8yywAAyiT8zNrgF1zJXpIDWPTnLuBhWLewccDPHuzUU6qMt5t5jkz57skY5e1wwZAe4-le_US4bKzk0BfKGJIB74ZRjykedBtDiePw8XSdyldk1K08FoB8DuSkdm8Fv1rTpfpae5hn54mS7E4kfEWzlA8o6vwBm0PN9ecULVZH6BunK1djeXy6VlLhVdbVVIYCtNQuWA9NC2PSBULVj8lJ029GBmJfrHqxiNS0fN"/>
+</div>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-maternity-mint tracking-tight">Bloom</h1>
+</div>
+<button class="material-symbols-outlined text-maternity-mint text-[28px] hover:opacity-80 transition-opacity active:scale-95">
+            notifications
+        </button>
+</header>
+<main class="mt-24 px-container-padding max-w-4xl mx-auto space-y-section-gap-md">
+<!-- Welcome Section -->
+<section class="space-y-2">
+<p class="font-eyebrow text-eyebrow text-muted-sage uppercase tracking-widest">Good Morning, Elena</p>
+<h2 class="font-headline-md text-headline-md text-on-background">Week 24, Day 3</h2>
+</section>
+<!-- Main Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-grid-gutter">
+<!-- Daily Progress Card -->
+<div class="md:col-span-7 glass-card p-container-padding rounded-3xl maternity-glow flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[120px] text-maternity-mint">auto_graph</span>
+</div>
+<div class="space-y-1 relative z-10">
+<h3 class="font-title-lg text-title-lg text-on-surface">Daily Progress</h3>
+<p class="font-body-md text-body-md text-muted-sage">Your health baseline is optimal</p>
+</div>
+<div class="mt-8 flex items-end gap-4 relative z-10">
+<span class="font-display-lg text-display-lg text-maternity-mint">84</span>
+<span class="font-title-lg text-title-lg text-muted-sage pb-2">/100</span>
+</div>
+<div class="mt-6 space-y-3 relative z-10">
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full progress-gradient rounded-full" style="width: 84%"></div>
+</div>
+<div class="flex justify-between font-label-md text-label-md text-muted-sage">
+<span>Excellent</span>
+<span>Next Milestone: 90</span>
+</div>
+</div>
+</div>
+<!-- Size Comparison Card -->
+<div class="md:col-span-5 glass-card rounded-3xl p-6 flex flex-col items-center justify-center text-center space-y-4 border-white/5">
+<div class="w-full aspect-square rounded-2xl bg-surface-container/50 flex items-center justify-center relative overflow-hidden">
+<!-- Placeholder for 3D Mango Illustration -->
+<img class="w-48 h-48 object-contain" data-alt="A sophisticated 3D rendered illustration of a ripe mango with a soft, ethereal glow. The fruit is rendered with hyper-realistic textures but placed in a minimalist, dark void with maternity mint lighting accents. The style is 'medical-premium' with a focus on organic softness and clinical precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdKZlth5_Oa_587acRMofJyfZMyiwJSP2tLuX9AkCCpRWNbn4s2DbjUyf9GL-235d54im6YgJhwwGWQhZR-_xUHq9_4uckyY-jD_Avu1WsJfm8dK_nIO0xmlC0JNsCLwbd2uucoE2o1J4eT0Pg1M21RRp5PAokV1wsD6FnoeMB2ydY6d0ppudS7hYSyr6sxyJu7C86yFopAS7v3GbY56w9HGVc_kgVpa9aIA2WTe54fPLioL2ptna6OAHmkda1a2O34U9GQJaMBbWe"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent"></div>
+</div>
+<div class="space-y-1">
+<p class="font-eyebrow text-eyebrow text-soft-blush uppercase">Current Size</p>
+<h3 class="font-title-lg text-title-lg text-on-surface">Baby is a Mango</h3>
+</div>
+</div>
+</div>
+<!-- Horizontal Metrics -->
+<section class="space-y-4">
+<div class="flex justify-between items-center">
+<h3 class="font-title-lg text-title-lg text-on-surface">Vital Metrics</h3>
+<button class="text-maternity-mint font-label-md text-label-md flex items-center gap-1 hover:opacity-80 transition-opacity">
+                    View All <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+<div class="flex gap-grid-gutter overflow-x-auto no-scrollbar pb-4 snap-x">
+<!-- Kick Counts -->
+<div class="min-w-[160px] glass-card p-5 rounded-2xl snap-start space-y-4 border-white/5 active:scale-95 transition-transform">
+<div class="w-10 h-10 rounded-xl bg-maternity-mint/10 flex items-center justify-center text-maternity-mint">
+<span class="material-symbols-outlined">favorite</span>
+</div>
+<div>
+<p class="font-eyebrow text-eyebrow text-muted-sage uppercase">Kick Counts</p>
+<p class="font-title-lg text-title-lg text-on-surface">8 <span class="text-body-md text-muted-sage font-normal">Today</span></p>
+</div>
+</div>
+<!-- Hydration -->
+<div class="min-w-[160px] glass-card p-5 rounded-2xl snap-start space-y-4 border-white/5 active:scale-95 transition-transform">
+<div class="w-10 h-10 rounded-xl bg-primary-container/10 flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined">water_drop</span>
+</div>
+<div>
+<p class="font-eyebrow text-eyebrow text-muted-sage uppercase">Hydration</p>
+<p class="font-title-lg text-title-lg text-on-surface">1.2L <span class="text-body-md text-muted-sage font-normal">/ 2.5L</span></p>
+</div>
+</div>
+<!-- Sleep -->
+<div class="min-w-[160px] glass-card p-5 rounded-2xl snap-start space-y-4 border-white/5 active:scale-95 transition-transform">
+<div class="w-10 h-10 rounded-xl bg-soft-blush/10 flex items-center justify-center text-soft-blush">
+<span class="material-symbols-outlined">bedtime</span>
+</div>
+<div>
+<p class="font-eyebrow text-eyebrow text-muted-sage uppercase">Sleep</p>
+<p class="font-title-lg text-title-lg text-on-surface">8.2h <span class="text-body-md text-muted-sage font-normal">avg</span></p>
+</div>
+</div>
+<!-- Placeholder for more -->
+<div class="min-w-[160px] glass-card p-5 rounded-2xl snap-start space-y-4 border-white/5 opacity-50">
+<div class="w-10 h-10 rounded-xl bg-muted-sage/10 flex items-center justify-center text-muted-sage">
+<span class="material-symbols-outlined">add</span>
+</div>
+<div>
+<p class="font-eyebrow text-eyebrow text-muted-sage uppercase">Weight</p>
+<p class="font-title-lg text-title-lg text-on-surface">Track</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Insights / AI Suggestion -->
+<section class="glass-card p-6 rounded-3xl border-maternity-mint/10 bg-gradient-to-br from-maternity-mint/5 to-transparent">
+<div class="flex items-start gap-4">
+<div class="mt-1">
+<span class="material-symbols-outlined text-maternity-mint text-[32px]">smart_toy</span>
+</div>
+<div class="space-y-2">
+<h4 class="font-title-lg text-title-lg text-on-surface">AI Health Insight</h4>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        Based on your lower hydration today (1.2L), your sleep quality might be affected tonight. Try to reach 2L before 7:00 PM for optimal rest.
+                    </p>
+<button class="mt-2 px-6 py-2 bg-maternity-mint text-deep-charcoal font-label-md text-label-md rounded-full active:scale-95 transition-transform">
+                        Set Reminder
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-surface-container/90 backdrop-blur-xl border-t border-white/5 rounded-t-xl shadow-lg z-50">
+<a class="flex flex-col items-center justify-center bg-primary-container/20 text-primary rounded-full px-4 py-1 hover:text-primary transition-colors active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">home_health</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-muted-sage px-4 py-1 hover:text-primary transition-colors active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">medical_services</span>
+<span class="font-label-md text-label-md">Health</span>
+</a>
+<a class="flex flex-col items-center justify-center text-muted-sage px-4 py-1 hover:text-primary transition-colors active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">edit_note</span>
+<span class="font-label-md text-label-md">Symptoms</span>
+</a>
+<a class="flex flex-col items-center justify-center text-muted-sage px-4 py-1 hover:text-primary transition-colors active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">auto_graph</span>
+<span class="font-label-md text-label-md">Journey</span>
+</a>
+<a class="flex flex-col items-center justify-center text-muted-sage px-4 py-1 hover:text-primary transition-colors active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="font-label-md text-label-md">AI Chat</span>
+</a>
+</nav>
+<!-- Floating Action Button (Contextual for Home) -->
+<button class="fixed bottom-28 right-container-padding w-14 h-14 bg-maternity-mint text-deep-charcoal rounded-full shadow-2xl flex items-center justify-center active:scale-90 transition-transform z-40">
+<span class="material-symbols-outlined text-[32px]">add</span>
+</button>
+<script>
+        // Simple micro-interaction for cards
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px)';
+                card.style.transition = 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Add visual interest to the progress bar on load
+        window.addEventListener('load', () => {
+            const bar = document.querySelector('.progress-gradient');
+            bar.style.width = '0%';
+            setTimeout(() => {
+                bar.style.transition = 'width 1.5s cubic-bezier(0.65, 0, 0.35, 1)';
+                bar.style.width = '84%';
+            }, 300);
+        });
+    </script>
+</body></html>
